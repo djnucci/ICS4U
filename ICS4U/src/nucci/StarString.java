@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 /*
  * StarString.java
- * This program counts up, though the use of stars and recersion, from 2 to the power of zero to your number
+ * This program counts up, though the use of stars and recursion, from 2 to the power of zero to your number
  * @author Daniel Nucci
  * @version September 14th, 2016
  */
