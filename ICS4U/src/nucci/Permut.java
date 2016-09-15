@@ -59,7 +59,7 @@ public class Permut {
 	 * this method recursively calls itself to print out stars
 	 * 
 	 * @param num
-	 *            - int the number the user inputted
+	 *            - int the number the user inputed
 	 */
 	public static int permut(int n, int r) {
 		return factorial(n) / factorial(n - r);
@@ -68,7 +68,7 @@ public class Permut {
 
 	public static int factorial(int num){
 		
-		if (num == 1){
+		if (num == 1 || num == 0){
 			return 1;
 		}
 		return num*factorial(num-1);
