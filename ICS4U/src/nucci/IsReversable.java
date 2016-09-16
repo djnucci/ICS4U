@@ -16,26 +16,24 @@ public class IsReversable {
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
 
-		int numInput = 0;
-
 		String word1 = "";
 		String word2 = "";
+		
+		boolean flag = false;
 
 		while (true) {
 			while (true) {
-				System.out.println("Please enter a word: ");
-				word1 = scan.nextLine().trim();
-				System.out.println("Please enter another word: ");
-				word2 = scan.nextLine().trim();
 				try {
-					digits = 0;
-					numInput = Integer.parseInt(scan.nextLine());
+					System.out.println("Please enter a word: ");
+					word1 = scan.nextLine().trim();
+					System.out.println("Please enter another word: ");
+					word2 = scan.nextLine().trim();
 					break;
 				} catch (NumberFormatException ie) {
 					System.out.println("Try an String next time");
 				}
 			}
-			isReverse(word1, word2);
+			System.out.println(isReverse(word1, word2));
 
 			System.out.println("Would you like to play again? (type no to end)");
 
@@ -56,10 +54,10 @@ public class IsReversable {
 	 */
 	public static boolean isReverse(String wordForward, String wordBackward) {
 
-		char[] firstWord = reverse(wordBackward);
+		char[] firstWord = reverse(wordBackward).toCharArray();
 		char[] secondWord = wordForward.toCharArray();
 
-		if (firstWord == secondWord) {
+		if (compareArray(firstWord, secondWord)) {
 			return true;
 		}
 		else {
@@ -67,9 +65,29 @@ public class IsReversable {
 		}
 	}
 
-	public static char[] reverse(String wordBackward) {
-		char[] newWord = wordBackward.toCharArray();
+	public static String reverse(String wordBackward) {
+	    if ((wordBackward == null) || (wordBackward.length() <= 1)) {
+	        return wordBackward;
+	    }
+	    return reverse(wordBackward.substring(1)) + wordBackward.charAt(0);
+	}
 
-		return newWord;
+	public static boolean compareArray(char[] array1, char[] array2) {
+		boolean flag = false;
+		if (array1.length == array2.length) {
+			for (int i = 0; i < array1.length; i++) {
+				if (array1[i] == array2[i]) {
+					flag = true;
+				}
+				else{
+					flag = false;
+					break;
+				}
+			}
+		}
+		else {
+			return false;
+		}
+		return flag;
 	}
 }
