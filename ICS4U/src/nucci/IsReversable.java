@@ -11,8 +11,6 @@ import java.util.Scanner;
 
 public class IsReversable {
 
-	public static int digits = 0;
-
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
 
