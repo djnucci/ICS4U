@@ -18,7 +18,7 @@ public class PalindromeTester {
 					word1 = scan.nextLine().trim();
 					break;
 				} catch (NumberFormatException ie) {
-					System.out.println("Try an String next time");
+					System.out.println("Try a String next time");
 				}
 			}
 			if (palindromeTester(word1)) {
