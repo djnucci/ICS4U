@@ -3,8 +3,8 @@ package nucci;
 import java.util.Scanner;
 
 public class AliceThroughTheLookingGlass {
-//FIXME im sideways
-	public static boolean[][] arrayPrime = {{false, false, false, false, false}, {false, false, false, false, false}, {false, false, false, false, false}, {false, false, true, false, false}, {false, true, true, true, false}, };
+
+	public static boolean[][] array;
 	
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
@@ -19,8 +19,12 @@ public class AliceThroughTheLookingGlass {
 			}
 		}
 		
+		for(int i = 0; i < input[0].length; i++){
+			
+		}
+		
 		for(int i = 0; i < testCases; i++){
-				if(arrayPrime[input[1][i]][input[2][i]]){
+				if(array[input[1][i]][input[2][i]]){
 					System.out.println("crystal");
 				}
 				else{
@@ -28,11 +32,21 @@ public class AliceThroughTheLookingGlass {
 				}
 		}
 
-		
-		
+	}
 	
+	
+	
+	//3 * (mag - 1 ^ 5) if, mag >= 2
+	//3 * 1 if, mag = 1
+	
+	/*
+	public static int squareAtX(int mag, int x){
+		if(mag >= 1){
+			int power = (int) Math.pow(5.0, mag) - 1;
+		}
+		
 		
 		
 	}
-
+	*/
 }
