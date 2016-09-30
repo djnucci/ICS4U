@@ -1,3 +1,5 @@
+import java.util.regex.PatternSyntaxException;
+
 public class Student {
 	private String firstName, lastName, streetAddress, city, province, postalCode, phoneNumber, birthDate;
 
@@ -20,6 +22,30 @@ public class Student {
 	 */
 	public void setBirthDate(String birthDate) {
 		this.birthDate = birthDate;
+	}
+	
+	/**
+	 * Makes sure the user inputed student's birth date is the correct formatting
+	 * 
+	 * @param birthDate	
+	 * 		String - his/her potential birth date
+	 */
+	public boolean varifyBirthDate(String birthDate) {
+		String[] splitText;
+		int streetNumber = 0;
+		
+		try{
+			splitText = birthDate.split(" ");
+		}catch (PatternSyntaxException ie){
+			return false;			
+		}
+		try{
+			streetNumber = Integer.parseInt(splitText[0]);
+		}catch (NumberFormatException ie){
+			return false;
+		}
+		
+		return true;
 	}
 
 	/**

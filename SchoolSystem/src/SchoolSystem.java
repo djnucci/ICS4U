@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class SchoolSystem {
@@ -44,7 +45,7 @@ public class SchoolSystem {
 				}
 			}
 			else if(directoryIndex == 4){
-				System.out.println("NOT IMPLEMENTED YET");
+				System.out.println("WIP");
 			}
 			else if(directoryIndex == 5){
 				System.out.println("NOT IMPLEMENTED YET");
@@ -76,7 +77,7 @@ public class SchoolSystem {
 	}
 
 	/**
-	 * 
+	 * Appends a student to the global array
 	 */
 	public static void addStudent() {
 		Scanner scan = new Scanner(System.in);
@@ -110,7 +111,7 @@ public class SchoolSystem {
 	}
 
 	/**
-	 * 
+	 * Prints the introduction to the user
 	 */
 	public static void printIntro() {
 		System.out.println("School System Database Directions".toUpperCase());
@@ -118,7 +119,7 @@ public class SchoolSystem {
 		System.out.println("Type  ( 1 ) to enter a new student.");
 		System.out.println("Type  ( 2 ) to print out a single student.");
 		System.out.println("Type  ( 3 ) to print out the entire directory of students.");
-		System.out.println("Type  ( 4 ) to " + "DO NOTHING");
+		System.out.println("Type  ( 4 ) to delete a single student.");
 		System.out.println("Type  ( 5 ) to " + "DO NOTHING");
 		System.out.println("Type  ( 6 ) to " + "DO NOTHING");
 		System.out.println("Type  ( 7 ) to " + "DO NOTHING");
@@ -128,8 +129,10 @@ public class SchoolSystem {
 	}
 
 	/**
+	 * This prints the student at an index
 	 * 
 	 * @param i
+	 * 		int - index of arraylist
 	 */
 	public static void printStudent(int i) {
 		System.out.println(listOfStudents.get(i).getFirstName());
@@ -140,6 +143,74 @@ public class SchoolSystem {
 		System.out.println(listOfStudents.get(i).getStreetAddress());
 		System.out.println(listOfStudents.get(i).getPostalCode());
 		System.out.println(listOfStudents.get(i).getPhoneNumber());
+	}
+	
+	/**
+	 * This method calls the corresponding method to the number enter by the user
+	 * 
+	 * @param list
+	 * 		ArrayList - the list of students
+	 * @param identity
+	 * 		int - the sort method you want to call e.g. (1 = first name, 2 = last name, 3 = street address, 4 = city, 5 = provincial , 6 = postal code, 7 = phone number, 8 = birthdate)
+	 */
+	public static void sortArrayList(ArrayList<?> list, int identity){
+		if (identity == 1){
+			sortByFirstName(list);
+		}
+		else if (identity == 2){
+			sortByLastName(list);
+		}
+		else if (identity == 3){
+			sortByStreetAddress(list);
+		}
+		else if (identity == 4){
+			sortByCity(list);
+		}
+		else if (identity == 5){
+			sortByProvince(list);
+		}
+		else if (identity == 6){
+			sortByPostalCode(list);
+		}
+		else if (identity == 7){
+			sortByPhoneNumber(list);
+		}
+		else if (identity == 8){
+			sortByBirthDate(list);
+		}
+		else {
+			return;
+		}
+	}
+	
+	public static void sortByFirstName(ArrayList<?> list){
+		
+	}
+	public static void sortByLastName(ArrayList<?> list){
+		
+	}
+	public static void sortByStreetAddress(ArrayList<?> list){
+		
+	}
+	public static void sortByCity(ArrayList<?> list){
+		
+	}
+	public static void sortByProvince(ArrayList<?> list){
+		
+	}
+	public static void sortByPostalCode(ArrayList<?> list){
+		
+	}
+	public static void sortByPhoneNumber(ArrayList<?> list){
+		
+	}
+	public static void sortByBirthDate(ArrayList<?> list){
+		
+	}
+	
+	public static int binarySearch(ArrayList<?> list){
+	
+		return -1;
 	}
 
 }
