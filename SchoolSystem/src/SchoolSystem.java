@@ -26,7 +26,7 @@ public class SchoolSystem {
 				System.out.println("What student do you want to print? (number)");
 				while (true) {
 					try {
-						studentNumber = Integer.parseInt(scan.nextLine());
+						studentNumber = Integer.parseInt(scan.nextLine()) - 1;
 						break;
 					} catch (NumberFormatException ie) {
 						System.out.println("Try an int next time");
@@ -40,6 +40,7 @@ public class SchoolSystem {
 				
 				for (int i = 0; i < listOfStudents.size(); i++){
 					printStudent(i);
+					System.out.println("_______________________________");
 				}
 			}
 			else if(directoryIndex == 4){
@@ -113,16 +114,16 @@ public class SchoolSystem {
 	 */
 	public static void printIntro() {
 		System.out.println("School System Database Directions".toUpperCase());
-		System.out.println("#################################");
+		System.out.println("\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/");
 		System.out.println("Type  ( 1 ) to enter a new student.");
 		System.out.println("Type  ( 2 ) to print out a single student.");
 		System.out.println("Type  ( 3 ) to print out the entire directory of students.");
-		System.out.println("Type  ( 4 ) to ");
-		System.out.println("Type  ( 5 ) to ");
-		System.out.println("Type  ( 6 ) to ");
-		System.out.println("Type  ( 7 ) to ");
-		System.out.println("Type  ( 8 ) to ");
-		System.out.println("Type  ( 9 ) to ");
+		System.out.println("Type  ( 4 ) to " + "DO NOTHING");
+		System.out.println("Type  ( 5 ) to " + "DO NOTHING");
+		System.out.println("Type  ( 6 ) to " + "DO NOTHING");
+		System.out.println("Type  ( 7 ) to " + "DO NOTHING");
+		System.out.println("Type  ( 8 ) to " + "DO NOTHING");
+		System.out.println("Type  ( 9 ) to " + "DO NOTHING");
 		System.out.println("Type ( 10 ) to quit program");
 	}
 
@@ -131,14 +132,14 @@ public class SchoolSystem {
 	 * @param i
 	 */
 	public static void printStudent(int i) {
-		System.out.println(listOfStudents.get(i - 1).getFirstName());
-		System.out.println(listOfStudents.get(i - 1).getLastName());
-		System.out.println(listOfStudents.get(i - 1).getBirthDate());
-		System.out.println(listOfStudents.get(i - 1).getCity());
-		System.out.println(listOfStudents.get(i - 1).getProvince());
-		System.out.println(listOfStudents.get(i - 1).getStreetAddress());
-		System.out.println(listOfStudents.get(i - 1).getPostalCode());
-		System.out.println(listOfStudents.get(i - 1).getPhoneNumber());
+		System.out.println(listOfStudents.get(i).getFirstName());
+		System.out.println(listOfStudents.get(i).getLastName());
+		System.out.println(listOfStudents.get(i).getBirthDate());
+		System.out.println(listOfStudents.get(i).getCity());
+		System.out.println(listOfStudents.get(i).getProvince());
+		System.out.println(listOfStudents.get(i).getStreetAddress());
+		System.out.println(listOfStudents.get(i).getPostalCode());
+		System.out.println(listOfStudents.get(i).getPhoneNumber());
 	}
 
 }
