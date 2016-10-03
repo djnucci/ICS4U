@@ -263,7 +263,7 @@ public class SchoolSystem {
 			}
 		}
 		else {
-			System.out.println("This array only has 1 value, therefore does not need to be sorted");
+			System.out.println("This array only has less than 2 values, therefore does not need to be sorted");
 		}
 	}
 
@@ -284,7 +284,7 @@ public class SchoolSystem {
 			}
 		}
 		else {
-			System.out.println("This array only has 1 value, therefore does not need to be sorted");
+			System.out.println("This array only has less than 2 values, therefore does not need to be sorted");
 		}
 	}
 
@@ -305,7 +305,7 @@ public class SchoolSystem {
 			}
 		}
 		else {
-			System.out.println("This array only has 1 value, therefore does not need to be sorted");
+			System.out.println("This array only has less than 2 values, therefore does not need to be sorted");
 		}
 	}
 
@@ -326,7 +326,7 @@ public class SchoolSystem {
 			}
 		}
 		else {
-			System.out.println("This array only has 1 value, therefore does not need to be sorted");
+			System.out.println("This array only has less than 2 values, therefore does not need to be sorted");
 		}
 	}
 
@@ -347,7 +347,7 @@ public class SchoolSystem {
 			}
 		}
 		else {
-			System.out.println("This array only has 1 value, therefore does not need to be sorted");
+			System.out.println("This array only has less than 2 values, therefore does not need to be sorted");
 		}
 	}
 
@@ -368,7 +368,7 @@ public class SchoolSystem {
 			}
 		}
 		else {
-			System.out.println("This array only has 1 value, therefore does not need to be sorted");
+			System.out.println("This array only has less than 2 values, therefore does not need to be sorted");
 		}
 	}
 
