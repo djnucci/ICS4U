@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
+import java.util.regex.PatternSyntaxException;
 
 public class SchoolSystem {
 
@@ -73,7 +74,8 @@ public class SchoolSystem {
 				}
 			}
 			else if (directoryIndex == 5) {
-				System.out.println("NOT IMPLEMENTED YET");
+				System.out.println("Sorting...");
+				sortByFirstName(listOfStudents);
 			}
 			else if (directoryIndex == 6) {
 				System.out.println("NOT IMPLEMENTED YET");
@@ -119,9 +121,9 @@ public class SchoolSystem {
 		System.out.println("Please enter your last name: ");
 		listOfStudents.get(listOfStudents.size() - 1).setLastName(scan.nextLine());
 
-		System.out.println("Please enter your birth date (mm/dd/yyyy): ");
+		System.out.println("Please enter your birth date (mm dd yyyy): ");
 		userInput = scan.nextLine();
-		if (listOfStudents.get(listOfStudents.size() - 1).varifyBirthDate(userInput)) {
+		if (listOfStudents.get(listOfStudents.size() - 1).verifyBirthDate(userInput)) {
 			listOfStudents.get(listOfStudents.size() - 1).setBirthDate(userInput);
 		}
 		else {
@@ -138,7 +140,7 @@ public class SchoolSystem {
 
 		System.out.println("Please enter your current street address: ");
 		userInput = scan.nextLine();
-		if (listOfStudents.get(listOfStudents.size() - 1).varifyStreetAddress(userInput)) {
+		if (listOfStudents.get(listOfStudents.size() - 1).verifyStreetAddress(userInput)) {
 			listOfStudents.get(listOfStudents.size() - 1).setStreetAddress(userInput);
 		}
 		else {
@@ -149,7 +151,7 @@ public class SchoolSystem {
 
 		System.out.println("Please enter your postal code (X1X 1X1): ");
 		userInput = scan.nextLine();
-		if (listOfStudents.get(listOfStudents.size() - 1).varifyPostalCode(userInput)) {
+		if (listOfStudents.get(listOfStudents.size() - 1).verifyPostalCode(userInput)) {
 			listOfStudents.get(listOfStudents.size() - 1).setPostalCode(userInput);
 		}
 		else {
@@ -157,9 +159,9 @@ public class SchoolSystem {
 			System.out.println("Invalid input, please try again.");
 			return;
 		}
-		System.out.println("Please enter your phone number ((xxx) - xxx - xxxx):");
+		System.out.println("Please enter your phone number (xxx - xxx - xxxx):");
 		userInput = scan.nextLine();
-		if (listOfStudents.get(listOfStudents.size() - 1).varifyPhoneNumber(userInput)) {
+		if (listOfStudents.get(listOfStudents.size() - 1).verifyPhoneNumber(userInput)) {
 			listOfStudents.get(listOfStudents.size() - 1).setPhoneNumber(userInput);
 		}
 		else {
@@ -379,7 +381,19 @@ public class SchoolSystem {
 	 *           Arratlist<Student> - the global arraylist
 	 */
 	private static void sortByPhoneNumber(ArrayList<Student> list) {
-
+		if (list.size() >= 2) {
+			for (int i = 0; i < list.size() - 1; i++) {
+				for (int j = 0; j < list.size() - 1; j++) {
+					if (!areWordsAlphabetised(list.get(j).getPhoneNumber(), list.get(j + 1).getPhoneNumber())) {
+						Collections.swap(listOfStudents, j, j + 1);
+					}
+				}
+			}
+		}
+		else {
+			System.out.println("This array only has less than 2 values, therefore does not need to be sorted");
+		}
+	
 	}
 
 	/**
@@ -389,7 +403,18 @@ public class SchoolSystem {
 	 *           Arratlist<Student> - the global arraylist
 	 */
 	private static void sortByBirthDate(ArrayList<Student> list) {
-
+		if (list.size() >= 2) {
+			for (int i = 0; i < list.size() - 1; i++) {
+				for (int j = 0; j < list.size() - 1; j++) {
+					if (!areWordsAlphabetised(list.get(j).getBirthDate(), list.get(j + 1).getBirthDate())) {
+						Collections.swap(listOfStudents, j, j + 1);
+					}
+				}
+			}
+		}
+		else {
+			System.out.println("This array only has less than 2 values, therefore does not need to be sorted");
+		}
 	}
 
 	/**

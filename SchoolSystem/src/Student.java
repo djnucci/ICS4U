@@ -1,7 +1,143 @@
 import java.util.regex.PatternSyntaxException;
 
 public class Student {
+	
 	private String firstName, lastName, streetAddress, city, province, postalCode, phoneNumber, birthDate;
+	
+	/**
+	 * Default constructor
+	 */
+	public Student(){
+		setBirthDate("");
+		setCity("");
+		setFirstName("");
+		setLastName("");
+		setPhoneNumber("");
+		setPostalCode("");
+		setProvince("");
+		setStreetAddress("");
+	}
+	
+	/**
+	 * Makes a new Student with only a first name
+	 * 
+	 * @param firstName
+	 * 		String - the Student's first name
+	 */
+	public Student(String firstName){
+		setBirthDate("");
+		setCity("");
+		setFirstName(firstName);
+		setLastName("");
+		setPhoneNumber("");
+		setPostalCode("");
+		setProvince("");
+		setStreetAddress("");
+	}
+	
+	//TODO comment the rest of the constructors
+	public Student(String firstName, String lastName){
+		setBirthDate("");
+		setCity("");
+		setFirstName(firstName);
+		setLastName(lastName);
+		setPhoneNumber("");
+		setPostalCode("");
+		setProvince("");
+		setStreetAddress("");
+	}
+	
+	public Student(String firstName, String lastName, String birth){
+		if (verifyBirthDate(birth)) {
+			setBirthDate(birth);
+		}
+		setCity("");
+		setFirstName(firstName);
+		setLastName(lastName);
+		setPhoneNumber("");
+		setPostalCode("");
+		setProvince("");
+		setStreetAddress("");
+	}
+	
+	public Student(String firstName, String lastName, String birth, String city){
+		if (verifyBirthDate(birth)) {
+			setBirthDate(birth);
+		}
+		setCity(city);
+		setFirstName(firstName);
+		setLastName(lastName);
+		setPhoneNumber("");
+		setPostalCode("");
+		setProvince("");
+		setStreetAddress("");
+	}
+	
+	public Student(String firstName, String lastName, String birth, String city, String phoneNumber){
+		if (verifyBirthDate(birth)) {
+			setBirthDate(birth);
+		}
+		setCity(city);
+		setFirstName(firstName);
+		setLastName(lastName);
+		if (verifyBirthDate(birth)) {
+			setPhoneNumber(phoneNumber);
+		}
+		setPostalCode("");
+		setProvince("");
+		setStreetAddress("");
+	}
+	
+	public Student(String firstName, String lastName, String birth, String city, String phoneNumber, String postalCode){
+		if (verifyBirthDate(birth)) {
+			setBirthDate(birth);
+		}
+		setCity(city);
+		setFirstName(firstName);
+		setLastName(lastName);
+		if (verifyBirthDate(birth)) {
+			setPhoneNumber(phoneNumber);
+		}
+		setPostalCode(postalCode);
+		setProvince("");
+		setStreetAddress("");
+	}
+	
+	public Student(String firstName, String lastName, String birth, String city, String phoneNumber, String postalCode, String province){
+		if (verifyBirthDate(birth)) {
+			setBirthDate(birth);
+		}
+		setCity(city);
+		setFirstName(firstName);
+		setLastName(lastName);
+		if (verifyBirthDate(birth)) {
+			setPhoneNumber(phoneNumber);
+		}
+		setPostalCode(postalCode);
+		setProvince(province);
+		setStreetAddress("");
+	}
+	
+	public Student(String firstName, String lastName, String birth, String city, String phoneNumber, String postalCode, String province, String streetAddress){
+		if (verifyBirthDate(birth)) {
+			setBirthDate(birth);
+		}
+		setCity(city);
+		setFirstName(firstName);
+		setLastName(lastName);
+		if (verifyPhoneNumber(phoneNumber)) {
+			setPhoneNumber(phoneNumber);
+		}
+		if (verifyPostalCode(postalCode)) {
+			setPostalCode(postalCode);
+		}
+		setPostalCode(postalCode);
+		setProvince(province);
+		if (verifyStreetAddress(streetAddress)) {
+			setStreetAddress(streetAddress);
+		}
+		setStreetAddress(streetAddress);
+	}
 
 	/**
 	 * Gets the student's birth date
@@ -29,11 +165,11 @@ public class Student {
 	 *           String - his/her potential birth date
 	 * @return boolean - returns if valid
 	 */
-	public boolean varifyBirthDate(String birthDate) {
+	public boolean verifyBirthDate(String birthDate) {
 		int[] monthLengths = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 		String[] splitText;
 		try {
-			splitText = birthDate.split("/");
+			splitText = birthDate.split(" ");
 		} catch (PatternSyntaxException ie) {
 			return false;
 		}
@@ -153,7 +289,7 @@ public class Student {
 	 *           String - his/her potential phone number
 	 * @return boolean - returns if valid
 	 */
-	public boolean varifyPhoneNumber(String phoneNumber) {
+	public boolean verifyPhoneNumber(String phoneNumber) {
 		String[] splitText;
 		try {
 			splitText = phoneNumber.split(" - ");
@@ -168,11 +304,11 @@ public class Student {
 		char[] firstPart = splitText[0].toCharArray();
 		int secondPart, thirdPart;
 
-		if (firstPart.length != 5) {
+		if (firstPart.length != 3) {
 			return false;
 		}
 
-		if (!equalsNumber(firstPart[1]) || !equalsNumber(firstPart[2]) || !equalsNumber(firstPart[3])) {
+		if (!equalsNumber(firstPart[0]) || !equalsNumber(firstPart[1]) || !equalsNumber(firstPart[2])) {
 			return false;
 		}
 
@@ -220,7 +356,7 @@ public class Student {
 	 *           String - his/her potential postal code
 	 * @return boolean - returns if valid
 	 */
-	public boolean varifyPostalCode(String postalCode) {
+	public boolean verifyPostalCode(String postalCode) {
 		String[] splitText = new String[2];
 		try {
 			splitText = postalCode.split(" ");
@@ -311,9 +447,9 @@ public class Student {
 	 * 
 	 * @param streetAddress
 	 *           String - his/her potential street address
-	 * @return boolean - reurns if valid
+	 * @return boolean - returns if valid
 	 */
-	public boolean varifyStreetAddress(String streetAddress) {
+	public boolean verifyStreetAddress(String streetAddress) {
 		String[] splitText;
 		try {
 			splitText = streetAddress.split(" ");
