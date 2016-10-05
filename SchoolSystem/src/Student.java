@@ -1,13 +1,16 @@
 import java.util.regex.PatternSyntaxException;
 
 public class Student {
-	
+
+	public static final long studentConstant = 323000000;
+
 	private String firstName, lastName, streetAddress, city, province, postalCode, phoneNumber, birthDate;
-	
+	private long studentNumber = studentConstant;
+
 	/**
-	 * Default constructor
+	 * Default constructor (empty except for a student number)
 	 */
-	public Student(){
+	public Student() {
 		setBirthDate("");
 		setCity("");
 		setFirstName("");
@@ -16,15 +19,16 @@ public class Student {
 		setPostalCode("");
 		setProvince("");
 		setStreetAddress("");
+		setStudentNumber(++studentNumber);
 	}
-	
+
 	/**
-	 * Makes a new Student with only a first name
+	 * Makes a new Student with a first name
 	 * 
 	 * @param firstName
-	 * 		String - the Student's first name
+	 *           String - the student's first name
 	 */
-	public Student(String firstName){
+	public Student(String firstName) {
 		setBirthDate("");
 		setCity("");
 		setFirstName(firstName);
@@ -33,10 +37,18 @@ public class Student {
 		setPostalCode("");
 		setProvince("");
 		setStreetAddress("");
+		setStudentNumber(++studentNumber);
 	}
-	
-	//TODO comment the rest of the constructors
-	public Student(String firstName, String lastName){
+
+	/**
+	 * Makes a new Student with a first name and a last name
+	 * 
+	 * @param firstName
+	 *           String - the student's first name
+	 * @param lastName
+	 *           String - the student's last name
+	 */
+	public Student(String firstName, String lastName) {
 		setBirthDate("");
 		setCity("");
 		setFirstName(firstName);
@@ -45,9 +57,20 @@ public class Student {
 		setPostalCode("");
 		setProvince("");
 		setStreetAddress("");
+		setStudentNumber(++studentNumber);
 	}
-	
-	public Student(String firstName, String lastName, String birth){
+
+	/**
+	 * Makes a new Student with a first name, a last name and a birth date
+	 * 
+	 * @param firstName
+	 *           String - the student's first name
+	 * @param lastName
+	 *           String - the student's last name
+	 * @param birth
+	 *           String - the student's birth date
+	 */
+	public Student(String firstName, String lastName, String birth) {
 		if (verifyBirthDate(birth)) {
 			setBirthDate(birth);
 		}
@@ -58,9 +81,22 @@ public class Student {
 		setPostalCode("");
 		setProvince("");
 		setStreetAddress("");
+		setStudentNumber(++studentNumber);
 	}
-	
-	public Student(String firstName, String lastName, String birth, String city){
+
+	/**
+	 * Makes a new Student with a first name, a last name, a birth date and a home city
+	 * 
+	 * @param firstName
+	 *           String - the student's first name
+	 * @param lastName
+	 *           String - the student's last name
+	 * @param birth
+	 *           String - the student's birth date
+	 * @param city
+	 *           String - the student's home city
+	 */
+	public Student(String firstName, String lastName, String birth, String city) {
 		if (verifyBirthDate(birth)) {
 			setBirthDate(birth);
 		}
@@ -71,9 +107,24 @@ public class Student {
 		setPostalCode("");
 		setProvince("");
 		setStreetAddress("");
+		setStudentNumber(++studentNumber);
 	}
-	
-	public Student(String firstName, String lastName, String birth, String city, String phoneNumber){
+
+	/**
+	 * Makes a new Student with a first name, a last name, a birth date, a home city and a phone number
+	 * 
+	 * @param firstName
+	 *           String - the student's first name
+	 * @param lastName
+	 *           String - the student's last name
+	 * @param birth
+	 *           String - the student's birth date
+	 * @param city
+	 *           String - the student's home city
+	 * @param phoneNumber
+	 *           String - the student's phone number
+	 */
+	public Student(String firstName, String lastName, String birth, String city, String phoneNumber) {
 		if (verifyBirthDate(birth)) {
 			setBirthDate(birth);
 		}
@@ -86,9 +137,26 @@ public class Student {
 		setPostalCode("");
 		setProvince("");
 		setStreetAddress("");
+		setStudentNumber(++studentNumber);
 	}
-	
-	public Student(String firstName, String lastName, String birth, String city, String phoneNumber, String postalCode){
+
+	/**
+	 * Makes a new Student with a first name, a last name, a birth date, a home city, a phone number and a postal code
+	 * 
+	 * @param firstName
+	 *           String - the student's first name
+	 * @param lastName
+	 *           String - the student's last name
+	 * @param birth
+	 *           String - the student's birth date
+	 * @param city
+	 *           String - the student's home city
+	 * @param phoneNumber
+	 *           String - the student's phone number
+	 * @param postalCode
+	 *           String - the student's postal code
+	 */
+	public Student(String firstName, String lastName, String birth, String city, String phoneNumber, String postalCode) {
 		if (verifyBirthDate(birth)) {
 			setBirthDate(birth);
 		}
@@ -101,9 +169,28 @@ public class Student {
 		setPostalCode(postalCode);
 		setProvince("");
 		setStreetAddress("");
+		setStudentNumber(++studentNumber);
 	}
-	
-	public Student(String firstName, String lastName, String birth, String city, String phoneNumber, String postalCode, String province){
+
+	/**
+	 * Makes a new Student with a first name, a last name, a birth date, a home city, a phone number, a postal code and a province
+	 * 
+	 * @param firstName
+	 *           String - the student's first name
+	 * @param lastName
+	 *           String - the student's last name
+	 * @param birth
+	 *           String - the student's birth date
+	 * @param city
+	 *           String - the student's home city
+	 * @param phoneNumber
+	 *           String - the student's phone number
+	 * @param postalCode
+	 *           String - the student's postal code
+	 * @param province
+	 *           String - the student's home province
+	 */
+	public Student(String firstName, String lastName, String birth, String city, String phoneNumber, String postalCode, String province) {
 		if (verifyBirthDate(birth)) {
 			setBirthDate(birth);
 		}
@@ -116,9 +203,30 @@ public class Student {
 		setPostalCode(postalCode);
 		setProvince(province);
 		setStreetAddress("");
+		setStudentNumber(++studentNumber);
 	}
-	
-	public Student(String firstName, String lastName, String birth, String city, String phoneNumber, String postalCode, String province, String streetAddress){
+
+	/**
+	 * Makes a new Student with a first name, a last name, a birth date, a home city, a phone number, a postal code, a province and street address
+	 * 
+	 * @param firstName
+	 *           String - the student's first name
+	 * @param lastName
+	 *           String - the student's last name
+	 * @param birth
+	 *           String - the student's birth date
+	 * @param city
+	 *           String - the student's home city
+	 * @param phoneNumber
+	 *           String - the student's phone number
+	 * @param postalCode
+	 *           String - the student's postal code
+	 * @param province
+	 *           String - the student's home province
+	 * @param streetAddress
+	 *           String - the student's street address
+	 */
+	public Student(String firstName, String lastName, String birth, String city, String phoneNumber, String postalCode, String province, String streetAddress) {
 		if (verifyBirthDate(birth)) {
 			setBirthDate(birth);
 		}
@@ -137,6 +245,7 @@ public class Student {
 			setStreetAddress(streetAddress);
 		}
 		setStreetAddress(streetAddress);
+		setStudentNumber(++studentNumber);
 	}
 
 	/**
@@ -465,6 +574,25 @@ public class Student {
 			return false;
 		}
 		return true;
+	}
+
+	/**
+	 * Sets the student's student number
+	 * 
+	 * @param studentNumber
+	 *           long - the students number value
+	 */
+	public void setStudentNumber(long studentNumber) {
+		this.studentNumber = studentNumber;
+	}
+
+	/**
+	 * Gets the student's student number
+	 * 
+	 * @return long - the student's number
+	 */
+	public long getStudentNumber() {
+		return studentNumber;
 	}
 
 	/**
