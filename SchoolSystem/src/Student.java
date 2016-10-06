@@ -11,14 +11,30 @@ public class Student {
 	 * Default constructor (empty except for a student number)
 	 */
 	public Student() {
-		setBirthDate("");
+		try {
+			setBirthDate("");
+		} catch (InvalidInputException e) {
+			e.printStackTrace();
+		}
 		setCity("");
 		setFirstName("");
 		setLastName("");
-		setPhoneNumber("");
-		setPostalCode("");
+		try {
+			setPhoneNumber("");
+		} catch (InvalidInputException e) {
+			e.printStackTrace();
+		}
+		try {
+			setPostalCode("");
+		} catch (InvalidInputException e) {
+			e.printStackTrace();
+		}
 		setProvince("");
-		setStreetAddress("");
+		try {
+			setStreetAddress("");
+		} catch (InvalidInputException e) {
+			e.printStackTrace();
+		}
 		setStudentNumber(++studentNumber);
 	}
 
@@ -29,14 +45,30 @@ public class Student {
 	 *           String - the student's first name
 	 */
 	public Student(String firstName) {
-		setBirthDate("");
+		try {
+			setBirthDate("");
+		} catch (InvalidInputException e) {
+			e.printStackTrace();
+		}
 		setCity("");
 		setFirstName(firstName);
 		setLastName("");
-		setPhoneNumber("");
-		setPostalCode("");
+		try {
+			setPhoneNumber("");
+		} catch (InvalidInputException e) {
+			e.printStackTrace();
+		}
+		try {
+			setPostalCode("");
+		} catch (InvalidInputException e) {
+			e.printStackTrace();
+		}
 		setProvince("");
-		setStreetAddress("");
+		try {
+			setStreetAddress("");
+		} catch (InvalidInputException e) {
+			e.printStackTrace();
+		}
 		setStudentNumber(++studentNumber);
 	}
 
@@ -49,14 +81,30 @@ public class Student {
 	 *           String - the student's last name
 	 */
 	public Student(String firstName, String lastName) {
-		setBirthDate("");
+		try {
+			setBirthDate("");
+		} catch (InvalidInputException e) {
+			e.printStackTrace();
+		}
 		setCity("");
 		setFirstName(firstName);
 		setLastName(lastName);
-		setPhoneNumber("");
-		setPostalCode("");
+		try {
+			setPhoneNumber("");
+		} catch (InvalidInputException e) {
+			e.printStackTrace();
+		}
+		try {
+			setPostalCode("");
+		} catch (InvalidInputException e) {
+			e.printStackTrace();
+		}
 		setProvince("");
-		setStreetAddress("");
+		try {
+			setStreetAddress("");
+		} catch (InvalidInputException e) {
+			e.printStackTrace();
+		}
 		setStudentNumber(++studentNumber);
 	}
 
@@ -225,8 +273,9 @@ public class Student {
 	 *           String - the student's home province
 	 * @param streetAddress
 	 *           String - the student's street address
+	 * @throws InvalidInputException 
 	 */
-	public Student(String firstName, String lastName, String birth, String city, String phoneNumber, String postalCode, String province, String streetAddress) {
+	public Student(String firstName, String lastName, String birth, String city, String phoneNumber, String postalCode, String province, String streetAddress) throws InvalidInputException {
 		if (verifyBirthDate(birth)) {
 			setBirthDate(birth);
 		}
@@ -262,8 +311,12 @@ public class Student {
 	 * 
 	 * @param birthDate
 	 *           String - his/her birth date
+	 * @throws InvalidInputException 
 	 */
-	public void setBirthDate(String birthDate) {
+	public void setBirthDate(String birthDate) throws InvalidInputException {
+		if (!verifyBirthDate(birthDate)){
+			throw new InvalidInputException("Invalid Birth Date.");
+		}
 		this.birthDate = birthDate;
 	}
 
@@ -386,8 +439,12 @@ public class Student {
 	 * 
 	 * @param phoneNumber
 	 *           String - his/her phone number
+	 * @throws InvalidInputException 
 	 */
-	public void setPhoneNumber(String phoneNumber) {
+	public void setPhoneNumber(String phoneNumber) throws InvalidInputException {
+		if (!verifyPhoneNumber(phoneNumber)){
+			throw new InvalidInputException("Invalid Phone Number.");
+		}
 		this.phoneNumber = phoneNumber;
 	}
 
@@ -453,8 +510,12 @@ public class Student {
 	 * 
 	 * @param postalCode
 	 *           String - his/her postal code
+	 * @throws InvalidInputException 
 	 */
-	public void setPostalCode(String postalCode) {
+	public void setPostalCode(String postalCode) throws InvalidInputException {
+		if (!verifyPostalCode(postalCode)){
+			throw new InvalidInputException("Invalid Postal Code.");
+		}
 		this.postalCode = postalCode;
 	}
 
@@ -546,8 +607,12 @@ public class Student {
 	 * 
 	 * @param streetAddress
 	 *           String - his/her street address
+	 * @throws InvalidInputException 
 	 */
-	public void setStreetAddress(String streetAddress) {
+	public void setStreetAddress(String streetAddress) throws InvalidInputException {
+		if (!verifyStreetAddress(streetAddress)){
+			throw new InvalidInputException("Invalid Street Address.");
+		}
 		this.streetAddress = streetAddress;
 	}
 
