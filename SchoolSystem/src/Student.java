@@ -1,7 +1,9 @@
+import java.util.Calendar;
 import java.util.regex.PatternSyntaxException;
 
 public class Student {
-
+	public static final int thisYear = Calendar.getInstance().get(Calendar.YEAR);
+	
 	public static final long studentConstant = 323000000;
 
 	private String firstName, lastName, streetAddress, city, province, postalCode, phoneNumber, birthDate;
@@ -117,18 +119,31 @@ public class Student {
 	 *           String - the student's last name
 	 * @param birth
 	 *           String - the student's birth date
+	 * @throws InvalidInputException 
 	 */
-	public Student(String firstName, String lastName, String birth) {
+	public Student(String firstName, String lastName, String birth) throws InvalidInputException {
 		if (verifyBirthDate(birth)) {
 			setBirthDate(birth);
 		}
 		setCity("");
 		setFirstName(firstName);
 		setLastName(lastName);
-		setPhoneNumber("");
-		setPostalCode("");
+		try {
+			setPhoneNumber("");
+		} catch (InvalidInputException e) {
+			e.printStackTrace();
+		}
+		try {
+			setPostalCode("");
+		} catch (InvalidInputException e) {
+			e.printStackTrace();
+		}
 		setProvince("");
-		setStreetAddress("");
+		try {
+			setStreetAddress("");
+		} catch (InvalidInputException e) {
+			e.printStackTrace();
+		}
 		setStudentNumber(++studentNumber);
 	}
 
@@ -143,18 +158,31 @@ public class Student {
 	 *           String - the student's birth date
 	 * @param city
 	 *           String - the student's home city
+	 * @throws InvalidInputException 
 	 */
-	public Student(String firstName, String lastName, String birth, String city) {
+	public Student(String firstName, String lastName, String birth, String city) throws InvalidInputException {
 		if (verifyBirthDate(birth)) {
 			setBirthDate(birth);
 		}
 		setCity(city);
 		setFirstName(firstName);
 		setLastName(lastName);
-		setPhoneNumber("");
-		setPostalCode("");
+		try {
+			setPhoneNumber("");
+		} catch (InvalidInputException e) {
+			e.printStackTrace();
+		}
+		try {
+			setPostalCode("");
+		} catch (InvalidInputException e) {
+			e.printStackTrace();
+		}
 		setProvince("");
-		setStreetAddress("");
+		try {
+			setStreetAddress("");
+		} catch (InvalidInputException e) {
+			e.printStackTrace();
+		}
 		setStudentNumber(++studentNumber);
 	}
 
@@ -171,8 +199,9 @@ public class Student {
 	 *           String - the student's home city
 	 * @param phoneNumber
 	 *           String - the student's phone number
+	 * @throws InvalidInputException 
 	 */
-	public Student(String firstName, String lastName, String birth, String city, String phoneNumber) {
+	public Student(String firstName, String lastName, String birth, String city, String phoneNumber) throws InvalidInputException {
 		if (verifyBirthDate(birth)) {
 			setBirthDate(birth);
 		}
@@ -182,9 +211,17 @@ public class Student {
 		if (verifyBirthDate(birth)) {
 			setPhoneNumber(phoneNumber);
 		}
-		setPostalCode("");
+		try {
+			setPostalCode("");
+		} catch (InvalidInputException e) {
+			e.printStackTrace();
+		}
 		setProvince("");
-		setStreetAddress("");
+		try {
+			setStreetAddress("");
+		} catch (InvalidInputException e) {
+			e.printStackTrace();
+		}
 		setStudentNumber(++studentNumber);
 	}
 
@@ -203,8 +240,9 @@ public class Student {
 	 *           String - the student's phone number
 	 * @param postalCode
 	 *           String - the student's postal code
+	 * @throws InvalidInputException 
 	 */
-	public Student(String firstName, String lastName, String birth, String city, String phoneNumber, String postalCode) {
+	public Student(String firstName, String lastName, String birth, String city, String phoneNumber, String postalCode) throws InvalidInputException {
 		if (verifyBirthDate(birth)) {
 			setBirthDate(birth);
 		}
@@ -214,9 +252,19 @@ public class Student {
 		if (verifyBirthDate(birth)) {
 			setPhoneNumber(phoneNumber);
 		}
-		setPostalCode(postalCode);
+		try {
+			setPostalCode(postalCode);
+		} catch (InvalidInputException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		setProvince("");
-		setStreetAddress("");
+		try {
+			setStreetAddress("");
+		} catch (InvalidInputException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		setStudentNumber(++studentNumber);
 	}
 
@@ -237,8 +285,9 @@ public class Student {
 	 *           String - the student's postal code
 	 * @param province
 	 *           String - the student's home province
+	 * @throws InvalidInputException 
 	 */
-	public Student(String firstName, String lastName, String birth, String city, String phoneNumber, String postalCode, String province) {
+	public Student(String firstName, String lastName, String birth, String city, String phoneNumber, String postalCode, String province) throws InvalidInputException {
 		if (verifyBirthDate(birth)) {
 			setBirthDate(birth);
 		}
@@ -248,9 +297,17 @@ public class Student {
 		if (verifyBirthDate(birth)) {
 			setPhoneNumber(phoneNumber);
 		}
-		setPostalCode(postalCode);
+		try {
+			setPostalCode(postalCode);
+		} catch (InvalidInputException e1) {
+			e1.printStackTrace();
+		}
 		setProvince(province);
-		setStreetAddress("");
+		try {
+			setStreetAddress("");
+		} catch (InvalidInputException e) {
+			e.printStackTrace();
+		}
 		setStudentNumber(++studentNumber);
 	}
 
@@ -353,7 +410,7 @@ public class Student {
 			monthLengths[1] = 29;
 		}
 
-		if ((2016 - year) < 13 || (2016 - year) > 18) {
+		if ((thisYear - year) < 13 || (thisYear - year) > 18) {
 			return false;
 		}
 
