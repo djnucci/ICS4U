@@ -7,7 +7,7 @@ public class SchoolSystem {
 
 	public static ArrayList<Student> listOfStudents = new ArrayList<Student>();
 
-	public static void main(String[] args) {
+	public static void main(String[] args){
 		@SuppressWarnings("resource")
 		Scanner scan = new Scanner(System.in);
 		int directoryIndex = 0;
@@ -124,7 +124,11 @@ public class SchoolSystem {
 		System.out.println("Please enter your birth date (mm dd yyyy): ");
 		userInput = scan.nextLine();
 		if (listOfStudents.get(listOfStudents.size() - 1).verifyBirthDate(userInput)) {
-			listOfStudents.get(listOfStudents.size() - 1).setBirthDate(userInput);
+			try {
+				listOfStudents.get(listOfStudents.size() - 1).setBirthDate(userInput);
+			} catch (InvalidInputException e) {
+				e.printStackTrace();
+			}
 		}
 		else {
 			listOfStudents.remove(listOfStudents.size() - 1);
@@ -141,7 +145,11 @@ public class SchoolSystem {
 		System.out.println("Please enter your current street address: ");
 		userInput = scan.nextLine();
 		if (listOfStudents.get(listOfStudents.size() - 1).verifyStreetAddress(userInput)) {
-			listOfStudents.get(listOfStudents.size() - 1).setStreetAddress(userInput);
+			try {
+				listOfStudents.get(listOfStudents.size() - 1).setStreetAddress(userInput);
+			} catch (InvalidInputException e) {
+				e.printStackTrace();
+			}
 		}
 		else {
 			listOfStudents.remove(listOfStudents.size() - 1);
@@ -152,17 +160,26 @@ public class SchoolSystem {
 		System.out.println("Please enter your postal code (X1X 1X1): ");
 		userInput = scan.nextLine();
 		if (listOfStudents.get(listOfStudents.size() - 1).verifyPostalCode(userInput)) {
-			listOfStudents.get(listOfStudents.size() - 1).setPostalCode(userInput);
+			try {
+				listOfStudents.get(listOfStudents.size() - 1).setPostalCode(userInput);
+			} catch (InvalidInputException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		else {
 			listOfStudents.remove(listOfStudents.size() - 1);
 			System.out.println("Invalid input, please try again.");
 			return;
 		}
-		System.out.println("Please enter your phone number (xxx - xxx - xxxx):");
+		System.out.println("Please enter your phone number (### - ### - ####):");
 		userInput = scan.nextLine();
 		if (listOfStudents.get(listOfStudents.size() - 1).verifyPhoneNumber(userInput)) {
-			listOfStudents.get(listOfStudents.size() - 1).setPhoneNumber(userInput);
+			try {
+				listOfStudents.get(listOfStudents.size() - 1).setPhoneNumber(userInput);
+			} catch (InvalidInputException e) {
+				e.printStackTrace();
+			}
 		}
 		else {
 			listOfStudents.remove(listOfStudents.size() - 1);

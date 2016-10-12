@@ -1,10 +1,10 @@
 import java.util.Calendar;
 import java.util.regex.PatternSyntaxException;
 
-public class Student {
+public class Student implements Comparable{
 	public static final int thisYear = Calendar.getInstance().get(Calendar.YEAR);
 	
-	public static final long studentConstant = 323000000;
+	public static long studentConstant = 323000000;
 
 	private String firstName, lastName, streetAddress, city, province, postalCode, phoneNumber, birthDate;
 	private long studentNumber = studentConstant;
@@ -255,14 +255,12 @@ public class Student {
 		try {
 			setPostalCode(postalCode);
 		} catch (InvalidInputException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		setProvince("");
 		try {
 			setStreetAddress("");
 		} catch (InvalidInputException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		setStudentNumber(++studentNumber);
@@ -706,6 +704,7 @@ public class Student {
 	 */
 	public void setStudentNumber(long studentNumber) {
 		this.studentNumber = studentNumber;
+		studentConstant++;
 	}
 
 	/**
@@ -718,7 +717,7 @@ public class Student {
 	}
 
 	/**
-	 * This method check to see if a char equals a letter
+	 * This method check to see if a char equals an upper case letter
 	 * 
 	 * @param letter
 	 *           char - the char in question
@@ -749,4 +748,32 @@ public class Student {
 		}
 	}
 
+	/**
+	 * returns all fields appended together
+	 */
+	public String toString(){
+		return firstName + ", " + lastName + ", " + studentNumber + ", " + streetAddress + ", " + city + ", " + province + ", " + postalCode + ", " + phoneNumber;
+	}
+
+	/**
+	 * Returns if the two student numbers are the same
+	 * 
+	 * @param tempStudent
+	 * 			Student - the student you want to compare to
+	 * @return
+	 * 			if the two numbers are equal
+	 */
+	public boolean equals(Student tempStudent){
+		return (this.getStudentNumber() == tempStudent.getStudentNumber()) ? true : false;
+	}
+	
+	@Override
+	public int compareTo(Object temp) {
+		Student tempStudent = (Student)temp;
+		
+		if(this.getLastName().compareToIgnoreCase(tempStudent.getLastName()) > 0){
+			
+		}
+		return 0;
+	}
 }
