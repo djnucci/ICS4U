@@ -1,9 +1,9 @@
 import java.util.Calendar;
 import java.util.regex.PatternSyntaxException;
 
-public class Student implements Comparable{
+public class Student implements Comparable {
 	public static final int thisYear = Calendar.getInstance().get(Calendar.YEAR);
-	
+
 	public static long studentConstant = 323000000;
 
 	private String firstName, lastName, streetAddress, city, province, postalCode, phoneNumber, birthDate;
@@ -119,7 +119,7 @@ public class Student implements Comparable{
 	 *           String - the student's last name
 	 * @param birth
 	 *           String - the student's birth date
-	 * @throws InvalidInputException 
+	 * @throws InvalidInputException
 	 */
 	public Student(String firstName, String lastName, String birth) throws InvalidInputException {
 		if (verifyBirthDate(birth)) {
@@ -158,7 +158,7 @@ public class Student implements Comparable{
 	 *           String - the student's birth date
 	 * @param city
 	 *           String - the student's home city
-	 * @throws InvalidInputException 
+	 * @throws InvalidInputException
 	 */
 	public Student(String firstName, String lastName, String birth, String city) throws InvalidInputException {
 		if (verifyBirthDate(birth)) {
@@ -199,7 +199,7 @@ public class Student implements Comparable{
 	 *           String - the student's home city
 	 * @param phoneNumber
 	 *           String - the student's phone number
-	 * @throws InvalidInputException 
+	 * @throws InvalidInputException
 	 */
 	public Student(String firstName, String lastName, String birth, String city, String phoneNumber) throws InvalidInputException {
 		if (verifyBirthDate(birth)) {
@@ -240,7 +240,7 @@ public class Student implements Comparable{
 	 *           String - the student's phone number
 	 * @param postalCode
 	 *           String - the student's postal code
-	 * @throws InvalidInputException 
+	 * @throws InvalidInputException
 	 */
 	public Student(String firstName, String lastName, String birth, String city, String phoneNumber, String postalCode) throws InvalidInputException {
 		if (verifyBirthDate(birth)) {
@@ -283,7 +283,7 @@ public class Student implements Comparable{
 	 *           String - the student's postal code
 	 * @param province
 	 *           String - the student's home province
-	 * @throws InvalidInputException 
+	 * @throws InvalidInputException
 	 */
 	public Student(String firstName, String lastName, String birth, String city, String phoneNumber, String postalCode, String province) throws InvalidInputException {
 		if (verifyBirthDate(birth)) {
@@ -328,7 +328,7 @@ public class Student implements Comparable{
 	 *           String - the student's home province
 	 * @param streetAddress
 	 *           String - the student's street address
-	 * @throws InvalidInputException 
+	 * @throws InvalidInputException
 	 */
 	public Student(String firstName, String lastName, String birth, String city, String phoneNumber, String postalCode, String province, String streetAddress) throws InvalidInputException {
 		if (verifyBirthDate(birth)) {
@@ -366,10 +366,10 @@ public class Student implements Comparable{
 	 * 
 	 * @param birthDate
 	 *           String - his/her birth date
-	 * @throws InvalidInputException 
+	 * @throws InvalidInputException
 	 */
 	public void setBirthDate(String birthDate) throws InvalidInputException {
-		if (!verifyBirthDate(birthDate)){
+		if (!verifyBirthDate(birthDate)) {
 			throw new InvalidInputException("Invalid Birth Date.");
 		}
 		this.birthDate = birthDate;
@@ -494,10 +494,10 @@ public class Student implements Comparable{
 	 * 
 	 * @param phoneNumber
 	 *           String - his/her phone number
-	 * @throws InvalidInputException 
+	 * @throws InvalidInputException
 	 */
 	public void setPhoneNumber(String phoneNumber) throws InvalidInputException {
-		if (!verifyPhoneNumber(phoneNumber)){
+		if (!verifyPhoneNumber(phoneNumber)) {
 			throw new InvalidInputException("Invalid Phone Number.");
 		}
 		this.phoneNumber = phoneNumber;
@@ -565,10 +565,10 @@ public class Student implements Comparable{
 	 * 
 	 * @param postalCode
 	 *           String - his/her postal code
-	 * @throws InvalidInputException 
+	 * @throws InvalidInputException
 	 */
 	public void setPostalCode(String postalCode) throws InvalidInputException {
-		if (!verifyPostalCode(postalCode)){
+		if (!verifyPostalCode(postalCode)) {
 			throw new InvalidInputException("Invalid Postal Code.");
 		}
 		this.postalCode = postalCode;
@@ -662,10 +662,10 @@ public class Student implements Comparable{
 	 * 
 	 * @param streetAddress
 	 *           String - his/her street address
-	 * @throws InvalidInputException 
+	 * @throws InvalidInputException
 	 */
 	public void setStreetAddress(String streetAddress) throws InvalidInputException {
-		if (!verifyStreetAddress(streetAddress)){
+		if (!verifyStreetAddress(streetAddress)) {
 			throw new InvalidInputException("Invalid Street Address.");
 		}
 		this.streetAddress = streetAddress;
@@ -751,7 +751,7 @@ public class Student implements Comparable{
 	/**
 	 * returns all fields appended together
 	 */
-	public String toString(){
+	public String toString() {
 		return firstName + ", " + lastName + ", " + studentNumber + ", " + streetAddress + ", " + city + ", " + province + ", " + postalCode + ", " + phoneNumber;
 	}
 
@@ -759,21 +759,34 @@ public class Student implements Comparable{
 	 * Returns if the two student numbers are the same
 	 * 
 	 * @param tempStudent
-	 * 			Student - the student you want to compare to
-	 * @return
-	 * 			if the two numbers are equal
+	 *           Student - the student you want to compare to
+	 * @return if the two numbers are equal
 	 */
-	public boolean equals(Student tempStudent){
+	public boolean equals(Student tempStudent) {
 		return (this.getStudentNumber() == tempStudent.getStudentNumber()) ? true : false;
 	}
+
 	
 	@Override
 	public int compareTo(Object temp) {
 		Student tempStudent = (Student)temp;
 		
-		if(this.getLastName().compareToIgnoreCase(tempStudent.getLastName()) > 0){
-			
+		if(this.getLastName().compareToIgnoreCase(tempStudent.getLastName()) == 0){
+			if(this.getFirstName().compareToIgnoreCase(tempStudent.getFirstName()) == 0){
+				return 0;
+			}
+			else if(this.getFirstName().compareToIgnoreCase(tempStudent.getFirstName()) > 0){
+				return 1;
+			}
+			else{
+				return -1;
+			}
 		}
-		return 0;
+		else if(this.getLastName().compareToIgnoreCase(tempStudent.getLastName()) > 0){
+			return 1;
+		}
+		else{
+			return -1;
+		}
 	}
 }

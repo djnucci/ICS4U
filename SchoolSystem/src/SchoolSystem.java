@@ -7,7 +7,7 @@ public class SchoolSystem {
 
 	public static ArrayList<Student> listOfStudents = new ArrayList<Student>();
 
-	public static void main(String[] args){
+	public static void main(String[] args) {
 		@SuppressWarnings("resource")
 		Scanner scan = new Scanner(System.in);
 		int directoryIndex = 0;
@@ -75,7 +75,18 @@ public class SchoolSystem {
 			}
 			else if (directoryIndex == 5) {
 				System.out.println("Sorting...");
-				sortByFirstName(listOfStudents);
+				if (listOfStudents.size() >= 2) {
+					for (int i = 0; i < listOfStudents.size() - 1; i++) {
+						for (int j = 0; j < listOfStudents.size() - 1; j++) {
+							if (listOfStudents.get(j).compareTo(listOfStudents.get(j + 1)) > 0) {
+								Collections.swap(listOfStudents, j, j + 1);
+							}
+						}
+					}
+				}
+				else {
+					System.out.println("This array only has less than 2 values, therefore does not need to be sorted");
+				}
 			}
 			else if (directoryIndex == 6) {
 				System.out.println("NOT IMPLEMENTED YET");
@@ -163,7 +174,6 @@ public class SchoolSystem {
 			try {
 				listOfStudents.get(listOfStudents.size() - 1).setPostalCode(userInput);
 			} catch (InvalidInputException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -198,7 +208,7 @@ public class SchoolSystem {
 		System.out.println("Type  ( 2 ) to print out a single student.");
 		System.out.println("Type  ( 3 ) to print out the entire directory of students.");
 		System.out.println("Type  ( 4 ) to delete a single student.");
-		System.out.println("Type  ( 5 ) to " + "DO NOTHING");
+		System.out.println("Type  ( 5 ) to sort the entire directory of students");
 		System.out.println("Type  ( 6 ) to " + "DO NOTHING");
 		System.out.println("Type  ( 7 ) to " + "DO NOTHING");
 		System.out.println("Type  ( 8 ) to " + "DO NOTHING");
@@ -410,7 +420,7 @@ public class SchoolSystem {
 		else {
 			System.out.println("This array only has less than 2 values, therefore does not need to be sorted");
 		}
-	
+
 	}
 
 	/**
@@ -432,19 +442,6 @@ public class SchoolSystem {
 		else {
 			System.out.println("This array only has less than 2 values, therefore does not need to be sorted");
 		}
-	}
-
-	/**
-	 * 
-	 * @param keyWord
-	 * @param list
-	 * @param sortMethod
-	 * @return
-	 */
-	private static int binarySearch(String keyWord, ArrayList<Student> list, int sortMethod) {
-		sortArrayList(list, sortMethod);
-
-		return -1;
 	}
 
 	/**
