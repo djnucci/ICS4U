@@ -1,3 +1,7 @@
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.PrintStream;
 import java.util.Calendar;
 import java.util.regex.PatternSyntaxException;
 
@@ -16,7 +20,6 @@ public class Student implements Comparable {
 		try {
 			setBirthDate("");
 		} catch (InvalidInputException e) {
-			e.printStackTrace();
 		}
 		setCity("");
 		setFirstName("");
@@ -24,18 +27,15 @@ public class Student implements Comparable {
 		try {
 			setPhoneNumber("");
 		} catch (InvalidInputException e) {
-			e.printStackTrace();
 		}
 		try {
 			setPostalCode("");
 		} catch (InvalidInputException e) {
-			e.printStackTrace();
 		}
 		setProvince("");
 		try {
 			setStreetAddress("");
 		} catch (InvalidInputException e) {
-			e.printStackTrace();
 		}
 		setStudentNumber(++studentNumber);
 	}
@@ -50,7 +50,7 @@ public class Student implements Comparable {
 		try {
 			setBirthDate("");
 		} catch (InvalidInputException e) {
-			e.printStackTrace();
+
 		}
 		setCity("");
 		setFirstName(firstName);
@@ -58,18 +58,18 @@ public class Student implements Comparable {
 		try {
 			setPhoneNumber("");
 		} catch (InvalidInputException e) {
-			e.printStackTrace();
+
 		}
 		try {
 			setPostalCode("");
 		} catch (InvalidInputException e) {
-			e.printStackTrace();
+
 		}
 		setProvince("");
 		try {
 			setStreetAddress("");
 		} catch (InvalidInputException e) {
-			e.printStackTrace();
+
 		}
 		setStudentNumber(++studentNumber);
 	}
@@ -86,7 +86,7 @@ public class Student implements Comparable {
 		try {
 			setBirthDate("");
 		} catch (InvalidInputException e) {
-			e.printStackTrace();
+
 		}
 		setCity("");
 		setFirstName(firstName);
@@ -94,18 +94,18 @@ public class Student implements Comparable {
 		try {
 			setPhoneNumber("");
 		} catch (InvalidInputException e) {
-			e.printStackTrace();
+
 		}
 		try {
 			setPostalCode("");
 		} catch (InvalidInputException e) {
-			e.printStackTrace();
+
 		}
 		setProvince("");
 		try {
 			setStreetAddress("");
 		} catch (InvalidInputException e) {
-			e.printStackTrace();
+
 		}
 		setStudentNumber(++studentNumber);
 	}
@@ -131,18 +131,18 @@ public class Student implements Comparable {
 		try {
 			setPhoneNumber("");
 		} catch (InvalidInputException e) {
-			e.printStackTrace();
+
 		}
 		try {
 			setPostalCode("");
 		} catch (InvalidInputException e) {
-			e.printStackTrace();
+
 		}
 		setProvince("");
 		try {
 			setStreetAddress("");
 		} catch (InvalidInputException e) {
-			e.printStackTrace();
+
 		}
 		setStudentNumber(++studentNumber);
 	}
@@ -170,18 +170,18 @@ public class Student implements Comparable {
 		try {
 			setPhoneNumber("");
 		} catch (InvalidInputException e) {
-			e.printStackTrace();
+
 		}
 		try {
 			setPostalCode("");
 		} catch (InvalidInputException e) {
-			e.printStackTrace();
+
 		}
 		setProvince("");
 		try {
 			setStreetAddress("");
 		} catch (InvalidInputException e) {
-			e.printStackTrace();
+
 		}
 		setStudentNumber(++studentNumber);
 	}
@@ -214,13 +214,13 @@ public class Student implements Comparable {
 		try {
 			setPostalCode("");
 		} catch (InvalidInputException e) {
-			e.printStackTrace();
+
 		}
 		setProvince("");
 		try {
 			setStreetAddress("");
 		} catch (InvalidInputException e) {
-			e.printStackTrace();
+
 		}
 		setStudentNumber(++studentNumber);
 	}
@@ -255,13 +255,13 @@ public class Student implements Comparable {
 		try {
 			setPostalCode(postalCode);
 		} catch (InvalidInputException e) {
-			e.printStackTrace();
+
 		}
 		setProvince("");
 		try {
 			setStreetAddress("");
 		} catch (InvalidInputException e) {
-			e.printStackTrace();
+
 		}
 		setStudentNumber(++studentNumber);
 	}
@@ -304,7 +304,7 @@ public class Student implements Comparable {
 		try {
 			setStreetAddress("");
 		} catch (InvalidInputException e) {
-			e.printStackTrace();
+
 		}
 		setStudentNumber(++studentNumber);
 	}
@@ -763,30 +763,30 @@ public class Student implements Comparable {
 	 * @return if the two numbers are equal
 	 */
 	public boolean equals(Student tempStudent) {
-		return (this.getStudentNumber() == tempStudent.getStudentNumber()) ? true : false;
+		return (this.getStudentNumber() == tempStudent.getStudentNumber());
 	}
 
-	
 	@Override
 	public int compareTo(Object temp) {
-		Student tempStudent = (Student)temp;
-		
-		if(this.getLastName().compareToIgnoreCase(tempStudent.getLastName()) == 0){
-			if(this.getFirstName().compareToIgnoreCase(tempStudent.getFirstName()) == 0){
+		Student tempStudent = (Student) temp;
+
+		if (this.getLastName().compareToIgnoreCase(tempStudent.getLastName()) == 0) {
+			if (this.getFirstName().compareToIgnoreCase(tempStudent.getFirstName()) == 0) {
 				return 0;
 			}
-			else if(this.getFirstName().compareToIgnoreCase(tempStudent.getFirstName()) > 0){
+			else if (this.getFirstName().compareToIgnoreCase(tempStudent.getFirstName()) > 0) {
 				return 1;
 			}
-			else{
+			else {
 				return -1;
 			}
 		}
-		else if(this.getLastName().compareToIgnoreCase(tempStudent.getLastName()) > 0){
+		else if (this.getLastName().compareToIgnoreCase(tempStudent.getLastName()) > 0) {
 			return 1;
 		}
-		else{
+		else {
 			return -1;
 		}
 	}
+
 }

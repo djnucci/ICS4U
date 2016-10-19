@@ -1,15 +1,21 @@
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
-import java.util.regex.PatternSyntaxException;
 
 public class SchoolSystem {
 
 	public static ArrayList<Student> listOfStudents = new ArrayList<Student>();
 
+	public static File file = new File("SchoolSystem\\src\\students.txt");
+
 	public static void main(String[] args) {
 		@SuppressWarnings("resource")
 		Scanner scan = new Scanner(System.in);
+
 		int directoryIndex = 0;
 		int studentNumber = 0;
 
@@ -89,10 +95,11 @@ public class SchoolSystem {
 				}
 			}
 			else if (directoryIndex == 6) {
-				System.out.println("NOT IMPLEMENTED YET");
+				System.out.println("Writing to file...");
+				saveToFile();
 			}
 			else if (directoryIndex == 7) {
-				System.out.println("NOT IMPLEMENTED YET");
+				System.out.println("Reading from file...");
 			}
 			else if (directoryIndex == 8) {
 				System.out.println("NOT IMPLEMENTED YET");
@@ -138,7 +145,7 @@ public class SchoolSystem {
 			try {
 				listOfStudents.get(listOfStudents.size() - 1).setBirthDate(userInput);
 			} catch (InvalidInputException e) {
-				e.printStackTrace();
+
 			}
 		}
 		else {
@@ -159,7 +166,7 @@ public class SchoolSystem {
 			try {
 				listOfStudents.get(listOfStudents.size() - 1).setStreetAddress(userInput);
 			} catch (InvalidInputException e) {
-				e.printStackTrace();
+
 			}
 		}
 		else {
@@ -174,7 +181,7 @@ public class SchoolSystem {
 			try {
 				listOfStudents.get(listOfStudents.size() - 1).setPostalCode(userInput);
 			} catch (InvalidInputException e) {
-				e.printStackTrace();
+
 			}
 		}
 		else {
@@ -188,7 +195,7 @@ public class SchoolSystem {
 			try {
 				listOfStudents.get(listOfStudents.size() - 1).setPhoneNumber(userInput);
 			} catch (InvalidInputException e) {
-				e.printStackTrace();
+
 			}
 		}
 		else {
@@ -209,13 +216,19 @@ public class SchoolSystem {
 		System.out.println("Type  ( 3 ) to print out the entire directory of students.");
 		System.out.println("Type  ( 4 ) to delete a single student.");
 		System.out.println("Type  ( 5 ) to sort the entire directory of students");
-		System.out.println("Type  ( 6 ) to " + "DO NOTHING");
-		System.out.println("Type  ( 7 ) to " + "DO NOTHING");
+		System.out.println("Type  ( 6 ) to save all the students");
+		System.out.println("Type  ( 7 ) to read from the saved file");
 		System.out.println("Type  ( 8 ) to " + "DO NOTHING");
 		System.out.println("Type  ( 9 ) to " + "DO NOTHING");
 		System.out.println("Type ( 10 ) to quit program");
 	}
 
+	/**
+	 * removes a student at the specified index
+	 * 
+	 * @param index
+	 *           int - the index to delete
+	 */
 	public static void deleteStudent(int index) {
 		listOfStudents.remove(index);
 	}
@@ -238,7 +251,7 @@ public class SchoolSystem {
 	}
 
 	/**
-	 * This method returns if the first word comes before the second in alpabetical order
+	 * This method returns if the first word comes before the second in alphabetical order
 	 * 
 	 * @param word1
 	 *           String - the first word to compare
@@ -422,6 +435,32 @@ public class SchoolSystem {
 		else {
 			return false;
 		}
+	}
+
+	/**
+	 * save listOfStudents to a .txt file
+	 */
+	public static void saveToFile() {
+		try {
+			FileOutputStream fos = new FileOutputStream(file);
+			PrintStream write = new PrintStream(fos);
+
+				file.createNewFile();
+
+			if (listOfStudents.size() > 0) {
+				write.println(listOfStudents.size() + ", " + listOfStudents.get(listOfStudents.size() - 1).getStudentNumber());
+
+				for (int i = 0; i < listOfStudents.size(); i++) {
+					write.println(listOfStudents.get(i).toString());
+				}
+			}
+			else {
+				System.out.println("You have no students to save.");
+			}
+		} catch (IOException e) {
+
+		}
+
 	}
 
 }
