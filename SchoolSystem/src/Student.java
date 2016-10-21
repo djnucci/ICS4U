@@ -1,7 +1,3 @@
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.PrintStream;
 import java.util.Calendar;
 import java.util.regex.PatternSyntaxException;
 
@@ -10,7 +6,8 @@ public class Student implements Comparable {
 
 	public static long studentConstant = 323000000;
 
-	private String firstName, lastName, streetAddress, city, province, postalCode, phoneNumber, birthDate;
+	private String firstName, lastName, streetAddress, city, postalCode, phoneNumber, birthDate;
+	private Province province;
 	private long studentNumber = studentConstant;
 
 	/**
@@ -32,7 +29,7 @@ public class Student implements Comparable {
 			setPostalCode("");
 		} catch (InvalidInputException e) {
 		}
-		setProvince("");
+		setProvince(Province.ALBERTA);
 		try {
 			setStreetAddress("");
 		} catch (InvalidInputException e) {
@@ -65,7 +62,7 @@ public class Student implements Comparable {
 		} catch (InvalidInputException e) {
 
 		}
-		setProvince("");
+		setProvince(Province.ALBERTA);
 		try {
 			setStreetAddress("");
 		} catch (InvalidInputException e) {
@@ -101,7 +98,7 @@ public class Student implements Comparable {
 		} catch (InvalidInputException e) {
 
 		}
-		setProvince("");
+		setProvince(Province.ALBERTA);
 		try {
 			setStreetAddress("");
 		} catch (InvalidInputException e) {
@@ -138,7 +135,7 @@ public class Student implements Comparable {
 		} catch (InvalidInputException e) {
 
 		}
-		setProvince("");
+		setProvince(Province.ALBERTA);
 		try {
 			setStreetAddress("");
 		} catch (InvalidInputException e) {
@@ -177,7 +174,7 @@ public class Student implements Comparable {
 		} catch (InvalidInputException e) {
 
 		}
-		setProvince("");
+		setProvince(Province.ALBERTA);
 		try {
 			setStreetAddress("");
 		} catch (InvalidInputException e) {
@@ -216,7 +213,7 @@ public class Student implements Comparable {
 		} catch (InvalidInputException e) {
 
 		}
-		setProvince("");
+		setProvince(Province.ALBERTA);
 		try {
 			setStreetAddress("");
 		} catch (InvalidInputException e) {
@@ -257,7 +254,7 @@ public class Student implements Comparable {
 		} catch (InvalidInputException e) {
 
 		}
-		setProvince("");
+		setProvince(Province.ALBERTA);
 		try {
 			setStreetAddress("");
 		} catch (InvalidInputException e) {
@@ -285,7 +282,7 @@ public class Student implements Comparable {
 	 *           String - the student's home province
 	 * @throws InvalidInputException
 	 */
-	public Student(String firstName, String lastName, String birth, String city, String phoneNumber, String postalCode, String province) throws InvalidInputException {
+	public Student(String firstName, String lastName, String birth, String city, String phoneNumber, String postalCode, Province province) throws InvalidInputException {
 		if (verifyBirthDate(birth)) {
 			setBirthDate(birth);
 		}
@@ -330,7 +327,7 @@ public class Student implements Comparable {
 	 *           String - the student's street address
 	 * @throws InvalidInputException
 	 */
-	public Student(String firstName, String lastName, String birth, String city, String phoneNumber, String postalCode, String province, String streetAddress) throws InvalidInputException {
+	public Student(String firstName, String lastName, String birth, String city, String phoneNumber, String postalCode, Province province, String streetAddress) throws InvalidInputException {
 		if (verifyBirthDate(birth)) {
 			setBirthDate(birth);
 		}
@@ -632,9 +629,9 @@ public class Student implements Comparable {
 	/**
 	 * Gets the student's province
 	 * 
-	 * @return String - his/her province
+	 * @return Province - his/her province
 	 */
-	public String getProvince() {
+	public Province getProvince() {
 		return province;
 	}
 
@@ -644,7 +641,7 @@ public class Student implements Comparable {
 	 * @param province
 	 *           String - his/her province
 	 */
-	public void setProvince(String province) {
+	public void setProvince(Province province) {
 		this.province = province;
 	}
 

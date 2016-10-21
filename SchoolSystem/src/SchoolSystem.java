@@ -158,7 +158,7 @@ public class SchoolSystem {
 		listOfStudents.get(listOfStudents.size() - 1).setCity(scan.nextLine());
 
 		System.out.println("Please enter the province you live in: ");
-		listOfStudents.get(listOfStudents.size() - 1).setProvince(scan.nextLine());
+		listOfStudents.get(listOfStudents.size() - 1).setProvince(makeProvince(scan.nextLine()));
 
 		System.out.println("Please enter your current street address: ");
 		userInput = scan.nextLine();
@@ -445,7 +445,7 @@ public class SchoolSystem {
 			FileOutputStream fos = new FileOutputStream(file);
 			PrintStream write = new PrintStream(fos);
 
-				file.createNewFile();
+			file.createNewFile();
 
 			if (listOfStudents.size() > 0) {
 				write.println(listOfStudents.size() + ", " + listOfStudents.get(listOfStudents.size() - 1).getStudentNumber());
@@ -463,4 +463,56 @@ public class SchoolSystem {
 
 	}
 
+	public static Province makeProvince(String input){
+		switch(input.toLowerCase()){//AB, BC, MB, NB, NL, NS, NT, NU, ON, PE, QC, SK, YT
+			case "ab":
+			case "alberta":
+				return Province.ALBERTA;
+			case "bc":
+			case "british columbia":
+				return Province.BRITISHCOLUMBIA;
+			case "mb":
+			case "manitoba":
+				return Province.MANITOBA;
+			case "nb":
+			case "new brunswick":
+				return Province.NEWBRUNSWICK;
+			case "nl":
+			case "newfoundland and labrador":
+			case "newfoundland":
+				return Province.NEWFOUNDLANDANDLABRADOR;
+			case "ns":
+			case "nova socia":
+				return Province.NOVASCOTIA;
+			case "nt":
+			case "northwest territorries":
+				return Province.NORTHWESTTERRITORIES;
+			case "nu":
+			case "nunavut":
+				return Province.NUNAVUT;
+			case "on":
+			case "Ontario":
+				return Province.ONTARIO;
+			case "pe":
+			case "pei":
+			case "prince edward island":
+				return Province.PRINCEEDWARDISLAND;
+			case "qu":
+			case "quebec":
+				return Province.QUEBEC;
+			case "sk":
+			case "saskatchewan":
+				return Province.SASKATCHEWAN;
+			case "yt":
+			case "yukon":
+				return Province.YUKON;
+			default:
+				try {
+					throw new InvalidInputException("Invalid province.");
+				} catch (InvalidInputException e) {
+				}
+				return null;
+			}
+
+	}
 }
