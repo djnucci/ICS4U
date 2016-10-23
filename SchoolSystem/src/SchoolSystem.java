@@ -1,5 +1,7 @@
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.util.ArrayList;
@@ -26,7 +28,7 @@ public class SchoolSystem {
 					directoryIndex = Integer.parseInt(scan.nextLine());
 					break;
 				} catch (NumberFormatException ie) {
-					System.out.println("Try an int next time");
+					System.out.println("Please enter a correct value.");
 				}
 			}
 			if (directoryIndex == 1) {
@@ -39,7 +41,7 @@ public class SchoolSystem {
 						studentNumber = Integer.parseInt(scan.nextLine()) - 1;
 						break;
 					} catch (NumberFormatException ie) {
-						System.out.println("Try an int next time");
+						System.out.println("Please enter a correct value.");
 					}
 
 				}
@@ -51,32 +53,29 @@ public class SchoolSystem {
 				}
 			}
 			else if (directoryIndex == 3) {
-				listOfStudents.trimToSize();
-
-				for (int i = 0; i < listOfStudents.size(); i++) {
-					printStudent(i);
-					System.out.println("___________________________________");
-				}
+				printAllStudents();
 			}
 			else if (directoryIndex == 4) {
 				System.out.println("What student do you want to delete? (number)");
+				printAllStudents();
 				while (true) {
 					try {
 						studentNumber = Integer.parseInt(scan.nextLine()) - 1;
 						break;
 					} catch (NumberFormatException ie) {
-						System.out.println("Try an int next time");
+						System.out.println("Please enter a correct value.");
 					}
 				}
 				if (listOfStudents.size() > studentNumber && studentNumber != -1) {
 					printStudent(studentNumber);
 					System.out.println("Are you sure you want to delete?");
 					if (scan.nextLine().equalsIgnoreCase("Yes")) {
+						System.out.println("Deleting...");
 						deleteStudent(studentNumber);
 					}
 				}
 				else {
-					System.out.println("Invalid");
+					System.out.println("Please enter a correct value.");
 				}
 			}
 			else if (directoryIndex == 5) {
@@ -100,13 +99,11 @@ public class SchoolSystem {
 			}
 			else if (directoryIndex == 7) {
 				System.out.println("Reading from file...");
+				readFromFile();
 			}
-			else if (directoryIndex == 8) {
-				System.out.println("NOT IMPLEMENTED YET");
-			}
-			else if (directoryIndex == 9) {
-				System.out.println("NOT IMPLEMENTED YET");
-			}
+			/*
+			 * else if (directoryIndex == 8) { System.out.println("NOT IMPLEMENTED YET"); } else if (directoryIndex == 9) { System.out.println("NOT IMPLEMENTED YET"); }
+			 */
 			else if (directoryIndex == 10) {
 				System.out.println("Are you sure?");
 				if (scan.nextLine().equalsIgnoreCase("Yes")) {
@@ -218,9 +215,23 @@ public class SchoolSystem {
 		System.out.println("Type  ( 5 ) to sort the entire directory of students");
 		System.out.println("Type  ( 6 ) to save all the students");
 		System.out.println("Type  ( 7 ) to read from the saved file");
-		System.out.println("Type  ( 8 ) to " + "DO NOTHING");
-		System.out.println("Type  ( 9 ) to " + "DO NOTHING");
+		/*
+		 * System.out.println("Type  ( 8 ) to " + "DO NOTHING"); System.out.println("Type  ( 9 ) to " + "DO NOTHING");
+		 */
 		System.out.println("Type ( 10 ) to quit program");
+	}
+
+	/**
+	 * Prints the entire array of students
+	 */
+	public static void printAllStudents() {
+		for (int i = 0; i < listOfStudents.size(); i++) {
+			System.out.println("Student index number: " + (i + 1));
+			printStudent(i);
+			if (listOfStudents.size() > 1) {
+				System.out.println("___________________________________");
+			}
+		}
 	}
 
 	/**
@@ -463,56 +474,97 @@ public class SchoolSystem {
 
 	}
 
-	public static Province makeProvince(String input){
-		switch(input.toLowerCase()){//AB, BC, MB, NB, NL, NS, NT, NU, ON, PE, QC, SK, YT
-			case "ab":
-			case "alberta":
+	/**
+	 * makes a Province out of a string
+	 * 
+	 * @param input
+	 *           String - the word to change into a Province
+	 * @return Province - the province that corresponds with the string input
+	 */
+	public static Province makeProvince(String input) {
+		switch (input.toLowerCase()) {
+			case "ab" :
+			case "alberta" :
 				return Province.ALBERTA;
-			case "bc":
-			case "british columbia":
+			case "bc" :
+			case "british columbia" :
+			case "britishcolumbia" :
 				return Province.BRITISHCOLUMBIA;
-			case "mb":
-			case "manitoba":
+			case "mb" :
+			case "manitoba" :
 				return Province.MANITOBA;
-			case "nb":
-			case "new brunswick":
+			case "nb" :
+			case "new brunswick" :
+			case "newbrunswick" :
 				return Province.NEWBRUNSWICK;
-			case "nl":
-			case "newfoundland and labrador":
-			case "newfoundland":
+			case "nl" :
+			case "newfoundland and labrador" :
+			case "newfoundlandandlabrador" :
 				return Province.NEWFOUNDLANDANDLABRADOR;
-			case "ns":
-			case "nova socia":
+			case "ns" :
+			case "nova socia" :
+			case "novascotia" :
 				return Province.NOVASCOTIA;
-			case "nt":
-			case "northwest territorries":
+			case "nt" :
+			case "northwest territorries" :
+			case "northwestterritorries" :
 				return Province.NORTHWESTTERRITORIES;
-			case "nu":
-			case "nunavut":
+			case "nu" :
+			case "nunavut" :
 				return Province.NUNAVUT;
-			case "on":
-			case "Ontario":
+			case "on" :
+			case "ontario" :
 				return Province.ONTARIO;
-			case "pe":
-			case "pei":
-			case "prince edward island":
+			case "pe" :
+			case "pei" :
+			case "prince edward island" :
+			case "princeedwardisland" :
 				return Province.PRINCEEDWARDISLAND;
-			case "qu":
-			case "quebec":
+			case "qu" :
+			case "quebec" :
 				return Province.QUEBEC;
-			case "sk":
-			case "saskatchewan":
+			case "sk" :
+			case "saskatchewan" :
 				return Province.SASKATCHEWAN;
-			case "yt":
-			case "yukon":
+			case "yt" :
+			case "yukon" :
 				return Province.YUKON;
-			default:
+			default :
 				try {
 					throw new InvalidInputException("Invalid province.");
 				} catch (InvalidInputException e) {
 				}
 				return null;
+		}
+	}
+
+	/**
+	 * read all students from the students.txt file
+	 */
+	public static void readFromFile() {
+		try {
+			BufferedReader read = new BufferedReader(new FileReader(file));
+
+			String lineOne = read.readLine();
+			String[] splitFile = lineOne.split(", ");
+			ArrayList<Student> tempStudentList = new ArrayList<Student>();
+
+			for (int i = 0; i < Integer.parseInt(splitFile[0]); i++) {
+				String[] nextLine = read.readLine().split(", ");
+
+				tempStudentList.get(i).setFirstName(nextLine[0]);
+				tempStudentList.get(i).setLastName(nextLine[1]);
+				tempStudentList.get(i).setStudentNumber(Long.parseLong(nextLine[2]));
+				tempStudentList.get(i).setStreetAddress(nextLine[3]);
+				tempStudentList.get(i).setCity(nextLine[4]);
+				tempStudentList.get(i).setProvince(makeProvince(nextLine[5]));
+				tempStudentList.get(i).setPostalCode(nextLine[6]);
+				tempStudentList.get(i).setPhoneNumber(nextLine[7]);
+
 			}
+
+		} catch (IOException | InvalidInputException e) {
+		}
 
 	}
 }
