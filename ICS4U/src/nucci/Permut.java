@@ -1,13 +1,13 @@
 package nucci;
 
-import java.util.Scanner;
-
-/*
+/**
  * StarString.java
- * This program counts up, though the use of stars and recursion, from 2 to the power of zero to your number
+ * This program counts up
  * @author Daniel Nucci
  * @version September 14th, 2016
  */
+
+import java.util.Scanner;
 
 public class Permut {
 
@@ -15,14 +15,14 @@ public class Permut {
 	 * Main Method
 	 * 
 	 * @param args
-	 *            - String[] an array of Strings passed to the main method
+	 *           - String[] an array of Strings passed to the main method
 	 */
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
 
 		int numN = 0;
 		int numR = 0;
-		
+
 		int ans = 0;
 
 		while (true) {
@@ -39,10 +39,13 @@ public class Permut {
 				}
 
 			}
-			ans = permut(numN, numR);
-			
+			try {
+				ans = permut(numN, numR);
+			} catch (StackOverflowError i) {
+				System.out.println("That number is too big!");
+			}
 			System.out.println(numN + "!" + " / (" + numN + "-" + numR + ")! = " + ans);
-			
+
 			System.out.println("Would you like to play again? (type no to end)");
 
 			String input = scan.nextLine();
@@ -59,19 +62,25 @@ public class Permut {
 	 * this method recursively calls itself to print out stars
 	 * 
 	 * @param num
-	 *            - int the number the user inputed
+	 *           - int the number the user inputed
 	 */
 	public static int permut(int n, int r) {
 		return factorial(n) / factorial(n - r);
-		
+
 	}
 
-	public static int factorial(int num){
-		
-		if (num == 1 || num == 0){
+	/**
+	 * performs a factorial
+	 * 
+	 * @param num
+	 *           int - the number to factorial
+	 * @return int - the factorialized number
+	 */
+	public static int factorial(int num) {
+		if (num == 1 || num == 0) {
 			return 1;
 		}
-		return num*factorial(num-1);
-		
+		return num * factorial(num - 1);
+
 	}
 }

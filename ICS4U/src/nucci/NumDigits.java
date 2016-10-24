@@ -1,6 +1,6 @@
 package nucci;
 
-/*
+/**
  * NumDigits.java
  * This program finds the number of digits in a number (defined by the user) through recursion
  * @author Daniel Nucci
@@ -33,10 +33,10 @@ public class NumDigits {
 
 			System.out.println("There are " + digits + " digit(s) in the number " + numInput);
 			System.out.println("Would you like to play again? (type no to end)");
-			
+
 			String input = scan.nextLine();
-			
-			if (input.equalsIgnoreCase("no") || input.equalsIgnoreCase("n")){
+
+			if (input.equalsIgnoreCase("no") || input.equalsIgnoreCase("n")) {
 				break;
 			}
 		}

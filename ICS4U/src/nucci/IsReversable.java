@@ -1,6 +1,6 @@
 package nucci;
 
-/*
+/**
  * IsReversable.java
  * This program finds out if two strings equal each other but reversed
  * @author Daniel Nucci
@@ -16,7 +16,7 @@ public class IsReversable {
 
 		String word1 = "";
 		String word2 = "";
-		
+
 		boolean flag = false;
 
 		while (true) {
@@ -48,7 +48,7 @@ public class IsReversable {
 	 * This method finds the number of digits in a number that is passed into it
 	 * 
 	 * @param num
-	 *            - int the number that is being recursively divided
+	 *           - int the number that is being recursively divided
 	 */
 	public static boolean isReverse(String wordForward, String wordBackward) {
 
@@ -63,13 +63,29 @@ public class IsReversable {
 		}
 	}
 
+	/**
+	 * reverses a string through recursion
+	 * 
+	 * @param wordBackward
+	 *           String - the back words word
+	 * @return String - the back words word
+	 */
 	public static String reverse(String wordBackward) {
-	    if ((wordBackward == null) || (wordBackward.length() <= 1)) {
-	        return wordBackward;
-	    }
-	    return reverse(wordBackward.substring(1)) + wordBackward.charAt(0);
+		if ((wordBackward == null) || (wordBackward.length() <= 1)) {
+			return wordBackward;
+		}
+		return reverse(wordBackward.substring(1)) + wordBackward.charAt(0);
 	}
 
+	/**
+	 * makes sure that the two arrays are the same
+	 * 
+	 * @param array1
+	 *           char[] - the first array
+	 * @param array2
+	 *           char[] - the second array
+	 * @return boolean - if they equal or not
+	 */
 	public static boolean compareArray(char[] array1, char[] array2) {
 		boolean flag = false;
 		if (array1.length == array2.length) {
@@ -77,7 +93,7 @@ public class IsReversable {
 				if (array1[i] == array2[i]) {
 					flag = true;
 				}
-				else{
+				else {
 					flag = false;
 					break;
 				}

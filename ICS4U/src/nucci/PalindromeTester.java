@@ -1,5 +1,12 @@
 package nucci;
 
+/**
+ * PalindromeTester.java
+ * This program finds if text entered is a palindrome
+ * @author Daniel Nucci
+ * @version September 15th, 2016
+ */
+
 import java.util.Scanner;
 
 public class PalindromeTester {
@@ -40,19 +47,21 @@ public class PalindromeTester {
 	}
 
 	/**
+	 * tests if the word is a palindrome
 	 * 
 	 * @param word
+	 * 			String - the word to test
 	 * @return
 	 */
 	public static boolean palindromeTester(String word) {
 		word = word.trim();
-		
+
 		String firstHalf = "";
 		String secondHalf = "";
 
 		char[] firstWord;
 		char[] secondWord;
-		
+
 		if (word.length() % 2 == 0) {
 			firstHalf = word.substring(0, word.length() / 2);
 			secondHalf = word.substring(word.length() / 2, word.length());
@@ -66,7 +75,7 @@ public class PalindromeTester {
 			secondHalf = word.substring((word.length() / 2) + 1, word.length());
 		}
 		// System.out.println(firstHalf + " " + secondHalf);
-		
+
 		firstWord = firstHalf.toCharArray();
 		secondWord = reverse(secondHalf).toCharArray();
 
@@ -78,66 +87,28 @@ public class PalindromeTester {
 		}
 	}
 
-	/*
-	public static boolean palindromeTester(char[] word) {
-		int numberOfSpaces = 0;
-		
-		for (int i = 0; i < word.length; i++){
-			if (word[i] == ' '){
-				numberOfSpaces++;
-			}
-		} 
-		
-		char[] spacelessWord = new char[word.length - numberOfSpaces];
-		
-		for (int i = 0; i < word.length; i++){
-			int j = 0; 
-			if (word[i] != ' '){
-				spacelessWord[j] = word[i];
-			}
-			else{
-				j--;
-			}
-		}
-		
-		char[] firstHalf = new char[(spacelessWord.length / 2)];
-		char[] secondHalf = new char[(spacelessWord.length / 2) + 10];
-		
-		if (word.length % 2 == 0) {
-			for (int i = 0; i < spacelessWord.length / 2; i++){
-				firstHalf[i] = spacelessWord[i];
-			}
-			for (int i = spacelessWord.length / 2; i < spacelessWord.length; i++){
-				secondHalf[i] = spacelessWord[i];
-			}
-		}
-		else if (word.length == 1) {
-			firstHalf = spacelessWord;
-			secondHalf = spacelessWord;
-		}
-		else {
-			for (int i = 0; i < spacelessWord.length; i++){
-				firstHalf[i] = spacelessWord[i];
-			}
-			for (int i = (spacelessWord.length / 2) + 1; i < spacelessWord.length; i++){
-				secondHalf[i] = spacelessWord[i];
-			}
-		}
-		 System.out.println(firstHalf + " " + secondHalf);
-		
-		if (compareArray(firstHalf, reverse(secondHalf, 0))) {
-			return true;
-		}
-		else {
-			return false;
-		}
-	}
-	*/
-	
+	/* FIXME not real code, just a test
+	 * public static boolean palindromeTester(char[] word) { int numberOfSpaces = 0;
+	 * 
+	 * for (int i = 0; i < word.length; i++){ if (word[i] == ' '){ numberOfSpaces++; } }
+	 * 
+	 * char[] spacelessWord = new char[word.length - numberOfSpaces];
+	 * 
+	 * for (int i = 0; i < word.length; i++){ int j = 0; if (word[i] != ' '){ spacelessWord[j] = word[i]; } else{ j--; } }
+	 * 
+	 * char[] firstHalf = new char[(spacelessWord.length / 2)]; char[] secondHalf = new char[(spacelessWord.length / 2) + 10];
+	 * 
+	 * if (word.length % 2 == 0) { for (int i = 0; i < spacelessWord.length / 2; i++){ firstHalf[i] = spacelessWord[i]; } for (int i = spacelessWord.length / 2; i < spacelessWord.length; i++){ secondHalf[i] = spacelessWord[i]; } } else if (word.length == 1) { firstHalf = spacelessWord; secondHalf = spacelessWord; } else { for (int i = 0; i < spacelessWord.length; i++){ firstHalf[i] = spacelessWord[i]; } for (int i = (spacelessWord.length / 2) + 1; i < spacelessWord.length; i++){ secondHalf[i] = spacelessWord[i]; } } System.out.println(firstHalf + " " + secondHalf);
+	 * 
+	 * if (compareArray(firstHalf, reverse(secondHalf, 0))) { return true; } else { return false; } }
+	 */
+
 	/**
+	 * reverses a string through recursion
 	 * 
 	 * @param wordBackward
-	 * @return
+	 *           String - the back words word
+	 * @return String - the back words word
 	 */
 	public static String reverse(String wordBackward) {
 		if ((wordBackward == null) || (wordBackward.length() <= 1)) {
@@ -145,35 +116,23 @@ public class PalindromeTester {
 		}
 		return reverse(wordBackward.substring(1)) + wordBackward.charAt(0);
 	}
-	
+
 	/*
-	public static char[] reverse(char[] array, int i) {
-      char[] empty = new char[0];
-      if (array.length < 1) {
-          System.out.println("you entered empty string");
-          return empty;
-      }
-      char temp;
-      temp = array[i];
-      array[i] = array[array.length - 1 - i];
-      array[array.length - 1 - i] = temp;
-      i++;
-
-      if (i >= array.length - 1 - i) {
-          return array;
-      } else {
-          reverse(array, i);
-          return array;
-      }
-
-  }
- */
+	 * public static char[] reverse(char[] array, int i) { char[] empty = new char[0]; if (array.length < 1) { System.out.println("you entered empty string"); return empty; } char temp; temp = array[i]; array[i] = array[array.length - 1 - i]; array[array.length - 1 - i] = temp; i++;
+	 * 
+	 * if (i >= array.length - 1 - i) { return array; } else { reverse(array, i); return array; }
+	 * 
+	 * }
+	 */
 
 	/**
+	 * makes sure that the two arrays are the same
 	 * 
 	 * @param array1
+	 *           char[] - the first array
 	 * @param array2
-	 * @return
+	 *           char[] - the second array
+	 * @return boolean - if they equal or not
 	 */
 	public static boolean compareArray(char[] array1, char[] array2) {
 		boolean flag = false;
