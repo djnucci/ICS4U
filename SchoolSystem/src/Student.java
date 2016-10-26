@@ -1,6 +1,13 @@
 import java.util.Calendar;
 import java.util.regex.PatternSyntaxException;
 
+/**
+ * Student.java This class is the student class, it has fields for all variables that can be entered into it
+ * 
+ * @author Daniel Nucci
+ * @version October 26th, 2016
+ */
+
 public class Student implements Comparable {
 	public static final int thisYear = Calendar.getInstance().get(Calendar.YEAR);
 
@@ -643,6 +650,20 @@ public class Student implements Comparable {
 	 */
 	public void setProvince(Province province) {
 		this.province = province;
+	}
+
+	/**
+	 * Makes sure the user inputed student's street address is the correct formatting
+	 * 
+	 * @param province
+	 * 			Province - his/her potential province
+	 * @return boolean - returns if valid
+	 */
+	public boolean varifyProvince(Province province) {
+		if (province.equals(Province.ALBERTA) || province.equals(Province.BRITISHCOLUMBIA) || province.equals(Province.MANITOBA) || province.equals(Province.NEWBRUNSWICK) || province.equals(Province.NEWFOUNDLANDANDLABRADOR) || province.equals(Province.NORTHWESTTERRITORIES) || province.equals(Province.NOVASCOTIA) || province.equals(Province.NUNAVUT) || province.equals(Province.ONTARIO) || province.equals(Province.PRINCEEDWARDISLAND) || province.equals(Province.QUEBEC) || province.equals(Province.SASKATCHEWAN) || province.equals(Province.YUKON)) {
+			return true;
+		}
+		return false;
 	}
 
 	/**

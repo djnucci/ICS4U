@@ -1,5 +1,3 @@
-
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -9,6 +7,13 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
+
+/**
+ * SchoolSystem.java This class is the main for the SchoolSystem Java project; this program takes information on a student and inputs it into an ArrayList
+ * 
+ * @author Daniel Nucci
+ * @version October 26th, 2016
+ */
 
 public class SchoolSystem {
 
@@ -138,69 +143,79 @@ public class SchoolSystem {
 		System.out.println("Please enter your last name: ");
 		listOfStudents.get(listOfStudents.size() - 1).setLastName(scan.nextLine());
 
-		System.out.println("Please enter your birth date (mm dd yyyy): ");
-		userInput = scan.nextLine();
-		if (listOfStudents.get(listOfStudents.size() - 1).verifyBirthDate(userInput)) {
-			try {
-				listOfStudents.get(listOfStudents.size() - 1).setBirthDate(userInput);
-			} catch (InvalidInputException e) {
-
+		while (true) {
+			System.out.println("Please enter your birth date (mm dd yyyy): ");
+			userInput = scan.nextLine();
+			if (listOfStudents.get(listOfStudents.size() - 1).verifyBirthDate(userInput)) {
+				try {
+					listOfStudents.get(listOfStudents.size() - 1).setBirthDate(userInput);
+					break;
+				} catch (InvalidInputException e) {
+				}
 			}
-		}
-		else {
-			listOfStudents.remove(listOfStudents.size() - 1);
-			System.out.println("Invalid input, please try again.");
-			return;
+			else {
+				System.out.println("Invalid input, please try again.");
+			}
 		}
 
 		System.out.println("Please enter the city you live in: ");
 		listOfStudents.get(listOfStudents.size() - 1).setCity(scan.nextLine());
 
-		System.out.println("Please enter the province you live in: ");
-		listOfStudents.get(listOfStudents.size() - 1).setProvince(makeProvince(scan.nextLine()));
-
-		System.out.println("Please enter your current street address: ");
-		userInput = scan.nextLine();
-		if (listOfStudents.get(listOfStudents.size() - 1).verifyStreetAddress(userInput)) {
-			try {
-				listOfStudents.get(listOfStudents.size() - 1).setStreetAddress(userInput);
-			} catch (InvalidInputException e) {
-
+		while (true) {
+			System.out.println("Please enter the province you live in: ");
+			userInput = scan.nextLine();
+			if (listOfStudents.get(listOfStudents.size() - 1).varifyProvince(makeProvince(userInput))) {
+				listOfStudents.get(listOfStudents.size() - 1).setProvince(makeProvince(userInput));
+				break;
+			}
+			else{
+				System.out.println("Invalid input, please try again.");
 			}
 		}
-		else {
-			listOfStudents.remove(listOfStudents.size() - 1);
-			System.out.println("Invalid input, please try again.");
-			return;
-		}
-
-		System.out.println("Please enter your postal code (X1X 1X1): ");
-		userInput = scan.nextLine();
-		if (listOfStudents.get(listOfStudents.size() - 1).verifyPostalCode(userInput)) {
-			try {
-				listOfStudents.get(listOfStudents.size() - 1).setPostalCode(userInput);
-			} catch (InvalidInputException e) {
-
+		
+		while (true) {
+			System.out.println("Please enter your current street address: ");
+			userInput = scan.nextLine();
+			if (listOfStudents.get(listOfStudents.size() - 1).verifyStreetAddress(userInput)) {
+				try {
+					listOfStudents.get(listOfStudents.size() - 1).setStreetAddress(userInput);
+					break;
+				} catch (InvalidInputException e) {
+				}
+			}
+			else {
+				System.out.println("Invalid input, please try again.");
 			}
 		}
-		else {
-			listOfStudents.remove(listOfStudents.size() - 1);
-			System.out.println("Invalid input, please try again.");
-			return;
-		}
-		System.out.println("Please enter your phone number (### - ### - ####):");
-		userInput = scan.nextLine();
-		if (listOfStudents.get(listOfStudents.size() - 1).verifyPhoneNumber(userInput)) {
-			try {
-				listOfStudents.get(listOfStudents.size() - 1).setPhoneNumber(userInput);
-			} catch (InvalidInputException e) {
 
+		while (true) {
+			System.out.println("Please enter your postal code (X1X 1X1): ");
+			userInput = scan.nextLine();
+			if (listOfStudents.get(listOfStudents.size() - 1).verifyPostalCode(userInput)) {
+				try {
+					listOfStudents.get(listOfStudents.size() - 1).setPostalCode(userInput);
+					break;
+				} catch (InvalidInputException e) {
+				}
+			}
+			else {
+				System.out.println("Invalid input, please try again.");
 			}
 		}
-		else {
-			listOfStudents.remove(listOfStudents.size() - 1);
-			System.out.println("Invalid input, please try again.");
-			return;
+
+		while (true) {
+			System.out.println("Please enter your phone number (### - ### - ####):");
+			userInput = scan.nextLine();
+			if (listOfStudents.get(listOfStudents.size() - 1).verifyPhoneNumber(userInput)) {
+				try {
+					listOfStudents.get(listOfStudents.size() - 1).setPhoneNumber(userInput);
+					break;
+				} catch (InvalidInputException e) {
+				}
+			}
+			else {
+				System.out.println("Invalid input, please try again.");
+			}
 		}
 	}
 
