@@ -19,7 +19,7 @@ public class SchoolSystem {
 
 	public static ArrayList<Student> listOfStudents = new ArrayList<Student>();
 
-	public static File file = new File("SchoolSystem\\src\\students.txt");
+	public static File file = new File("src/students.txt");
 
 	public static void main(String[] args) {
 		@SuppressWarnings("resource")
@@ -60,6 +60,9 @@ public class SchoolSystem {
 				}
 			}
 			else if (directoryIndex == 3) {
+				if (listOfStudents.size() < 1) {
+					System.out.println("There are no students to print.");
+				}
 				printAllStudents();
 			}
 			else if (directoryIndex == 4) {
@@ -165,14 +168,17 @@ public class SchoolSystem {
 			System.out.println("Please enter the province you live in: ");
 			userInput = scan.nextLine();
 			if (listOfStudents.get(listOfStudents.size() - 1).varifyProvince(makeProvince(userInput))) {
-				listOfStudents.get(listOfStudents.size() - 1).setProvince(makeProvince(userInput));
-				break;
+				try {
+					listOfStudents.get(listOfStudents.size() - 1).setProvince(makeProvince(userInput));
+					break;
+				} catch (InvalidInputException e) {
+				}
 			}
-			else{
+			else {
 				System.out.println("Invalid input, please try again.");
 			}
 		}
-		
+
 		while (true) {
 			System.out.println("Please enter your current street address: ");
 			userInput = scan.nextLine();
@@ -473,7 +479,9 @@ public class SchoolSystem {
 			FileOutputStream fos = new FileOutputStream(file);
 			PrintStream write = new PrintStream(fos);
 
-			file.createNewFile();
+			if (!file.exists()) {
+				file.createNewFile();
+			}
 
 			if (listOfStudents.size() > 0) {
 				write.println(listOfStudents.size() + ", " + listOfStudents.get(listOfStudents.size() - 1).getStudentNumber());
@@ -486,7 +494,6 @@ public class SchoolSystem {
 				System.out.println("You have no students to save.");
 			}
 		} catch (IOException e) {
-
 		}
 
 	}
@@ -559,15 +566,22 @@ public class SchoolSystem {
 	 * read all students from the students.txt file
 	 */
 	public static void readFromFile() {
+		ArrayList<Student> tempStudentList = null;
 		try {
 			BufferedReader read = new BufferedReader(new FileReader(file));
 
 			String lineOne = read.readLine();
 			String[] splitFile = lineOne.split(", ");
-			ArrayList<Student> tempStudentList = new ArrayList<Student>();
+			tempStudentList = new ArrayList<Student>();
+
+			for (int i = 0; i < listOfStudents.size() - 1; i++) {
+				listOfStudents.remove(i);
+			}
 
 			for (int i = 0; i < Integer.parseInt(splitFile[0]); i++) {
 				String[] nextLine = read.readLine().split(", ");
+
+				tempStudentList.add(new Student());
 
 				tempStudentList.get(i).setFirstName(nextLine[0]);
 				tempStudentList.get(i).setLastName(nextLine[1]);
@@ -577,11 +591,12 @@ public class SchoolSystem {
 				tempStudentList.get(i).setProvince(makeProvince(nextLine[5]));
 				tempStudentList.get(i).setPostalCode(nextLine[6]);
 				tempStudentList.get(i).setPhoneNumber(nextLine[7]);
+				tempStudentList.get(i).setBirthDate(nextLine[8]);
 
 			}
 
 		} catch (IOException | InvalidInputException e) {
 		}
-
+		listOfStudents = tempStudentList;
 	}
 }

@@ -36,7 +36,10 @@ public class Student implements Comparable {
 			setPostalCode("");
 		} catch (InvalidInputException e) {
 		}
-		setProvince(Province.ALBERTA);
+		try {
+			setProvince(Province.ALBERTA);
+		} catch (InvalidInputException e1) {
+		}
 		try {
 			setStreetAddress("");
 		} catch (InvalidInputException e) {
@@ -69,7 +72,11 @@ public class Student implements Comparable {
 		} catch (InvalidInputException e) {
 
 		}
-		setProvince(Province.ALBERTA);
+		try {
+			setProvince(Province.ALBERTA);
+		} catch (InvalidInputException e1) {
+
+		}
 		try {
 			setStreetAddress("");
 		} catch (InvalidInputException e) {
@@ -105,7 +112,11 @@ public class Student implements Comparable {
 		} catch (InvalidInputException e) {
 
 		}
-		setProvince(Province.ALBERTA);
+		try {
+			setProvince(Province.ALBERTA);
+		} catch (InvalidInputException e) {
+
+		}
 		try {
 			setStreetAddress("");
 		} catch (InvalidInputException e) {
@@ -516,6 +527,12 @@ public class Student implements Comparable {
 	 */
 	public boolean verifyPhoneNumber(String phoneNumber) {
 		String[] splitText;
+		char[] length = phoneNumber.toCharArray();
+
+		if (length.length != 16) {
+			return false;
+		}
+
 		try {
 			splitText = phoneNumber.split(" - ");
 		} catch (PatternSyntaxException ie) {
@@ -647,8 +664,12 @@ public class Student implements Comparable {
 	 * 
 	 * @param province
 	 *           String - his/her province
+	 * @throws InvalidInputException
 	 */
-	public void setProvince(Province province) {
+	public void setProvince(Province province) throws InvalidInputException {
+		if (!varifyProvince(province)) {
+			throw new InvalidInputException("Invalid Address");
+		}
 		this.province = province;
 	}
 
@@ -656,12 +677,15 @@ public class Student implements Comparable {
 	 * Makes sure the user inputed student's street address is the correct formatting
 	 * 
 	 * @param province
-	 * 			Province - his/her potential province
+	 *           Province - his/her potential province
 	 * @return boolean - returns if valid
 	 */
 	public boolean varifyProvince(Province province) {
-		if (province.equals(Province.ALBERTA) || province.equals(Province.BRITISHCOLUMBIA) || province.equals(Province.MANITOBA) || province.equals(Province.NEWBRUNSWICK) || province.equals(Province.NEWFOUNDLANDANDLABRADOR) || province.equals(Province.NORTHWESTTERRITORIES) || province.equals(Province.NOVASCOTIA) || province.equals(Province.NUNAVUT) || province.equals(Province.ONTARIO) || province.equals(Province.PRINCEEDWARDISLAND) || province.equals(Province.QUEBEC) || province.equals(Province.SASKATCHEWAN) || province.equals(Province.YUKON)) {
-			return true;
+		try {
+			if (province.equals(Province.ALBERTA) || province.equals(Province.BRITISHCOLUMBIA) || province.equals(Province.MANITOBA) || province.equals(Province.NEWBRUNSWICK) || province.equals(Province.NEWFOUNDLANDANDLABRADOR) || province.equals(Province.NORTHWESTTERRITORIES) || province.equals(Province.NOVASCOTIA) || province.equals(Province.NUNAVUT) || province.equals(Province.ONTARIO) || province.equals(Province.PRINCEEDWARDISLAND) || province.equals(Province.QUEBEC) || province.equals(Province.SASKATCHEWAN) || province.equals(Province.YUKON)) {
+				return true;
+			}
+		} catch (NullPointerException e) {
 		}
 		return false;
 	}
@@ -770,7 +794,7 @@ public class Student implements Comparable {
 	 * returns all fields appended together
 	 */
 	public String toString() {
-		return firstName + ", " + lastName + ", " + studentNumber + ", " + streetAddress + ", " + city + ", " + province + ", " + postalCode + ", " + phoneNumber;
+		return firstName + ", " + lastName + ", " + studentNumber + ", " + streetAddress + ", " + city + ", " + province + ", " + postalCode + ", " + phoneNumber + ", " + birthDate;
 	}
 
 	/**
