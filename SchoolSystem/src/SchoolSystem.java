@@ -274,6 +274,8 @@ public class SchoolSystem {
 	 *           int - index of arraylist
 	 */
 	private static void printStudent(int i) {
+		listOfStudents.trimToSize();
+
 		System.out.println(listOfStudents.get(i).getFirstName());
 		System.out.println(listOfStudents.get(i).getLastName());
 		System.out.println(listOfStudents.get(i).getBirthDate());
@@ -581,18 +583,9 @@ public class SchoolSystem {
 			for (int i = 0; i < Integer.parseInt(splitFile[0]); i++) {
 				String[] nextLine = read.readLine().split(", ");
 
-				tempStudentList.add(new Student());
+				tempStudentList.add(new Student(nextLine[0], nextLine[1], nextLine[8], nextLine[4], nextLine[7], nextLine[6], makeProvince(nextLine[5]), nextLine[3]));
 
-				tempStudentList.get(i).setFirstName(nextLine[0]);
-				tempStudentList.get(i).setLastName(nextLine[1]);
 				tempStudentList.get(i).setStudentNumber(Long.parseLong(nextLine[2]));
-				tempStudentList.get(i).setStreetAddress(nextLine[3]);
-				tempStudentList.get(i).setCity(nextLine[4]);
-				tempStudentList.get(i).setProvince(makeProvince(nextLine[5]));
-				tempStudentList.get(i).setPostalCode(nextLine[6]);
-				tempStudentList.get(i).setPhoneNumber(nextLine[7]);
-				tempStudentList.get(i).setBirthDate(nextLine[8]);
-
 			}
 
 		} catch (IOException | InvalidInputException e) {
