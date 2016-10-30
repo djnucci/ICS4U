@@ -276,226 +276,42 @@ public class SchoolSystem {
 	private static void printStudent(int i) {
 		listOfStudents.trimToSize();
 
-		System.out.println(listOfStudents.get(i).getFirstName());
-		System.out.println(listOfStudents.get(i).getLastName());
-		System.out.println(listOfStudents.get(i).getBirthDate());
-		System.out.println(listOfStudents.get(i).getCity());
-		System.out.println(listOfStudents.get(i).getProvince());
-		System.out.println(listOfStudents.get(i).getStreetAddress());
-		System.out.println(listOfStudents.get(i).getPostalCode());
-		System.out.println(listOfStudents.get(i).getPhoneNumber());
-	}
-
-	/**
-	 * This method returns if the first word comes before the second in alphabetical order
-	 * 
-	 * @param word1
-	 *           String - the first word to compare
-	 * @param word2
-	 *           String - the second word to compare
-	 * @return boolean - if the word1 should come before word2 (true if the two equal eachother)
-	 */
-	public static boolean areWordsAlphabetised(String word1, String word2) {
-		char[] splitWord1 = word1.toCharArray();
-		char[] splitWord2 = word2.toCharArray();
-
-		if (splitWord1.length > splitWord2.length) {
-			for (int i = 0; i < splitWord1.length; i++) {
-				if (splitWord1[i] == splitWord2[i]) {
-					if (i == splitWord1.length) {
-						return true;
-					}
-					else {
-						continue;
-					}
-				}
-				else {
-					if (isPrecursor(splitWord1[i], splitWord2[i])) {
-						return true;
-					}
-					else {
-						continue;
-					}
-				}
-			}
-		}
-		else {
-			for (int i = 0; i < splitWord2.length; i++) {
-				if (splitWord1[i] == splitWord2[i]) {
-					if (i == splitWord1.length) {
-						return true;
-					}
-					else {
-						continue;
-					}
-				}
-				else {
-					if (isPrecursor(splitWord1[i], splitWord2[i])) {
-						return true;
-					}
-					else {
-						continue;
-					}
-				}
-			}
-		}
-		return false;
-	}
-
-	/**
-	 * Determines if the first char comes before the second (alphanumerically)
-	 * 
-	 * @param char1
-	 *           char - the first char
-	 * @param char2
-	 *           char - the second char
-	 * @return boolean - if the first char comes before the second
-	 */
-	public static boolean isPrecursor(char c1, char c2) {
-		if (c1 != c2) {
-			if (c1 == ' ') {
-				return true;
-			}
-			else if (c1 == '0' && (c2 == ' ')) {
-				return false;
-			}
-			else if (c1 == 'z' || c1 == 'Z') {
-				return false;
-			}
-			else if (c1 == '1' && (c2 == ' ' || c2 == '0')) {
-				return false;
-			}
-			else if ((c1 == 'y' || c1 == 'Y') && ((c2 == 'z' || c2 == 'Z'))) {
-				return true;
-			}
-			else if (c1 == '2' && (c2 == ' ' || c2 == '0' || c2 == '1')) {
-				return false;
-			}
-			else if (c1 == '3' && (c2 == ' ' || c2 == '0' || c2 == '1' || c1 == '2')) {
-				return false;
-			}
-			else if ((c1 == 'x' || c1 == 'X') && ((c2 == 'y' || c2 == 'Y') || (c2 == 'z' || c2 == 'Z'))) {
-				return true;
-			}
-			else if (c1 == '4' && (c2 == ' ' || c2 == '0' || c2 == '1' || c2 == '2' || c2 == '3')) {
-				return false;
-			}
-			else if (c1 == '5' && (c2 == ' ' || c2 == '0' || c2 == '1' || c2 == '2' || c2 == '3' || c2 == '4')) {
-				return false;
-			}
-			else if ((c1 == 'w' || c1 == 'W') && ((c2 == 'x' || c2 == 'X') || (c2 == 'y' || c2 == 'Y') || (c2 == 'z' || c2 == 'Z'))) {
-				return true;
-			}
-			else if (c1 == '6' && (c2 == ' ' || c2 == '0' || c2 == '1' || c2 == '2' || c2 == '3' || c2 == '4' || c2 == '5')) {
-				return false;
-			}
-			else if (c1 == '7' && (c2 == ' ' || c2 == '0' || c2 == '1' || c2 == '2' || c2 == '3' || c2 == '4' || c2 == '5' || c2 == '6')) {
-				return false;
-			}
-			else if ((c1 == 'v' || c1 == 'V') && ((c2 == 'w' || c2 == 'W') || (c2 == 'x' || c2 == 'X') || (c2 == 'y' || c2 == 'Y') || (c2 == 'z' || c2 == 'Z'))) {
-				return true;
-			}
-			else if (c1 == '8' && (c2 == ' ' || c2 == '0' || c2 == '1' || c2 == '2' || c2 == '3' || c2 == '4' || c2 == '5' || c2 == '6' || c2 == '7')) {
-				return false;
-			}
-			else if (c1 == '9' && (c2 == ' ' || c2 == '0' || c2 == '1' || c2 == '2' || c2 == '3' || c2 == '4' || c2 == '5' || c2 == '6' || c2 == '7' || c2 == '8')) {
-				return false;
-			}
-			else if ((c1 == 'u' || c1 == 'U') && ((c2 == 'v' || c2 == 'V') || (c2 == 'w' || c2 == 'W') || (c2 == 'x' || c2 == 'X') || (c2 == 'y' || c2 == 'Y') || (c2 == 'z' || c2 == 'Z'))) {
-				return true;
-			}
-			else if ((c1 == 't' || c1 == 'T') && ((c2 == 'u' || c2 == 'U') || (c2 == 'v' || c2 == 'V') || (c2 == 'w' || c2 == 'W') || (c2 == 'x' || c2 == 'X') || (c2 == 'y' || c2 == 'Y') || (c2 == 'z' || c2 == 'Z'))) {
-				return true;
-			}
-			else if ((c1 == 's' || c1 == 'S') && ((c2 == 't' || c2 == 'T') || (c2 == 'u' || c2 == 'U') || (c2 == 'v' || c2 == 'V') || (c2 == 'w' || c2 == 'W') || (c2 == 'x' || c2 == 'X') || (c2 == 'y' || c2 == 'Y') || (c2 == 'z' || c2 == 'Z'))) {
-				return true;
-			}
-			else if ((c1 == 'r' || c1 == 'R') && ((c2 == 's' || c2 == 'S') || (c2 == 't' || c2 == 'T') || (c2 == 'u' || c2 == 'U') || (c2 == 'v' || c2 == 'V') || (c2 == 'w' || c2 == 'W') || (c2 == 'x' || c2 == 'X') || (c2 == 'y' || c2 == 'Y') || (c2 == 'z' || c2 == 'Z'))) {
-				return true;
-			}
-			else if ((c1 == 'q' || c1 == 'Q') && ((c2 == 'r' || c2 == 'R') || (c2 == 's' || c2 == 'S') || (c2 == 't' || c2 == 'T') || (c2 == 'u' || c2 == 'U') || (c2 == 'v' || c2 == 'V') || (c2 == 'w' || c2 == 'W') || (c2 == 'x' || c2 == 'X') || (c2 == 'y' || c2 == 'Y') || (c2 == 'z' || c2 == 'Z'))) {
-				return true;
-			}
-			else if ((c1 == 'p' || c1 == 'P') && ((c2 == 'q' || c2 == 'Q') || (c2 == 'r' || c2 == 'R') || (c2 == 's' || c2 == 'S') || (c2 == 't' || c2 == 'T') || (c2 == 'u' || c2 == 'U') || (c2 == 'v' || c2 == 'V') || (c2 == 'w' || c2 == 'W') || (c2 == 'x' || c2 == 'X') || (c2 == 'y' || c2 == 'Y') || (c2 == 'z' || c2 == 'Z'))) {
-				return true;
-			}
-			else if ((c1 == 'o' || c1 == 'O') && ((c2 == 'p' || c2 == 'P') || (c2 == 'q' || c2 == 'Q') || (c2 == 'r' || c2 == 'R') || (c2 == 's' || c2 == 'S') || (c2 == 't' || c2 == 'T') || (c2 == 'u' || c2 == 'U') || (c2 == 'v' || c2 == 'V') || (c2 == 'w' || c2 == 'W') || (c2 == 'x' || c2 == 'X') || (c2 == 'y' || c2 == 'Y') || (c2 == 'z' || c2 == 'Z'))) {
-				return true;
-			}
-			else if ((c1 == 'n' || c1 == 'N') && ((c2 == 'o' || c2 == 'O') || (c2 == 'p' || c2 == 'P') || (c2 == 'q' || c2 == 'Q') || (c2 == 'r' || c2 == 'R') || (c2 == 's' || c2 == 'S') || (c2 == 't' || c2 == 'T') || (c2 == 'u' || c2 == 'U') || (c2 == 'v' || c2 == 'V') || (c2 == 'w' || c2 == 'W') || (c2 == 'x' || c2 == 'X') || (c2 == 'y' || c2 == 'Y') || (c2 == 'z' || c2 == 'Z'))) {
-				return true;
-			}
-			else if ((c1 == 'm' || c1 == 'M') && ((c2 == 'n' || c2 == 'N') || (c2 == 'o' || c2 == 'O') || (c2 == 'p' || c2 == 'P') || (c2 == 'q' || c2 == 'Q') || (c2 == 'r' || c2 == 'R') || (c2 == 's' || c2 == 'S') || (c2 == 't' || c2 == 'T') || (c2 == 'u' || c2 == 'U') || (c2 == 'v' || c2 == 'V') || (c2 == 'w' || c2 == 'W') || (c2 == 'x' || c2 == 'X') || (c2 == 'y' || c2 == 'Y') || (c2 == 'z' || c2 == 'Z'))) {
-				return true;
-			}
-			else if ((c1 == 'l' || c1 == 'L') && ((c2 == 'm' || c2 == 'M') || (c2 == 'n' || c2 == 'N') || (c2 == 'o' || c2 == 'O') || (c2 == 'p' || c2 == 'P') || (c2 == 'q' || c2 == 'Q') || (c2 == 'r' || c2 == 'R') || (c2 == 's' || c2 == 'S') || (c2 == 't' || c2 == 'T') || (c2 == 'u' || c2 == 'U') || (c2 == 'v' || c2 == 'V') || (c2 == 'w' || c2 == 'W') || (c2 == 'x' || c2 == 'X') || (c2 == 'y' || c2 == 'Y') || (c2 == 'z' || c2 == 'Z'))) {
-				return true;
-			}
-			else if ((c1 == 'k' || c1 == 'K') && ((c2 == 'l' || c2 == 'L') || (c2 == 'm' || c2 == 'M') || (c2 == 'n' || c2 == 'N') || (c2 == 'o' || c2 == 'O') || (c2 == 'p' || c2 == 'P') || (c2 == 'q' || c2 == 'Q') || (c2 == 'r' || c2 == 'R') || (c2 == 's' || c2 == 'S') || (c2 == 't' || c2 == 'T') || (c2 == 'u' || c2 == 'U') || (c2 == 'v' || c2 == 'V') || (c2 == 'w' || c2 == 'W') || (c2 == 'x' || c2 == 'X') || (c2 == 'y' || c2 == 'Y') || (c2 == 'z' || c2 == 'Z'))) {
-				return true;
-			}
-			else if ((c1 == 'j' || c1 == 'J') && ((c2 == 'k' || c2 == 'K') || (c2 == 'l' || c2 == 'L') || (c2 == 'm' || c2 == 'M') || (c2 == 'n' || c2 == 'N') || (c2 == 'o' || c2 == 'O') || (c2 == 'p' || c2 == 'P') || (c2 == 'q' || c2 == 'Q') || (c2 == 'r' || c2 == 'R') || (c2 == 's' || c2 == 'S') || (c2 == 't' || c2 == 'T') || (c2 == 'u' || c2 == 'U') || (c2 == 'v' || c2 == 'V') || (c2 == 'w' || c2 == 'W') || (c2 == 'x' || c2 == 'X') || (c2 == 'y' || c2 == 'Y') || (c2 == 'z' || c2 == 'Z'))) {
-				return true;
-			}
-			else if ((c1 == 'i' || c1 == 'I') && ((c2 == 'j' || c2 == 'J') || (c2 == 'k' || c2 == 'K') || (c2 == 'l' || c2 == 'L') || (c2 == 'm' || c2 == 'M') || (c2 == 'n' || c2 == 'N') || (c2 == 'o' || c2 == 'O') || (c2 == 'p' || c2 == 'P') || (c2 == 'q' || c2 == 'Q') || (c2 == 'r' || c2 == 'R') || (c2 == 's' || c2 == 'S') || (c2 == 't' || c2 == 'T') || (c2 == 'u' || c2 == 'U') || (c2 == 'v' || c2 == 'V') || (c2 == 'w' || c2 == 'W') || (c2 == 'x' || c2 == 'X') || (c2 == 'y' || c2 == 'Y') || (c2 == 'z' || c2 == 'Z'))) {
-				return true;
-			}
-			else if ((c1 == 'a' || c1 == 'A') && (c2 == ' ' || c2 == '0' || c2 == '1' || c2 == '2' || c2 == '3' || c2 == '4' || c2 == '5' || c2 == '6' || c2 == '7' || c2 == '8' || c2 == '9')) {
-				return false;
-			}
-			else if ((c1 == 'b' || c1 == 'B') && (c2 == ' ' || c2 == '0' || c2 == '1' || c2 == '2' || c2 == '3' || c2 == '4' || c2 == '5' || c2 == '6' || c2 == '7' || c2 == '8' || c2 == '9' || (c2 == 'a' || c2 == 'A'))) {
-				return false;
-			}
-			else if ((c1 == 'c' || c1 == 'C') && (c2 == ' ' || c2 == '0' || c2 == '1' || c2 == '2' || c2 == '3' || c2 == '4' || c2 == '5' || c2 == '6' || c2 == '7' || c2 == '8' || c2 == '9' || (c2 == 'a' || c2 == 'A') || (c2 == 'b' || c2 == 'B'))) {
-				return false;
-			}
-			else if ((c1 == 'd' || c1 == 'D') && (c2 == ' ' || c2 == '0' || c2 == '1' || c2 == '2' || c2 == '3' || c2 == '4' || c2 == '5' || c2 == '6' || c2 == '7' || c2 == '8' || c2 == '9' || (c2 == 'a' || c2 == 'A') || (c2 == 'b' || c2 == 'B') || (c2 == 'c' || c2 == 'C'))) {
-				return false;
-			}
-			else if ((c1 == 'e' || c1 == 'E') && (c2 == ' ' || c2 == '0' || c2 == '1' || c2 == '2' || c2 == '3' || c2 == '4' || c2 == '5' || c2 == '6' || c2 == '7' || c2 == '8' || c2 == '9' || (c2 == 'a' || c2 == 'A') || (c2 == 'b' || c2 == 'B') || (c2 == 'c' || c2 == 'C') || (c2 == 'd' || c2 == 'D'))) {
-				return false;
-			}
-			else if ((c1 == 'f' || c1 == 'F') && (c2 == ' ' || c2 == '0' || c2 == '1' || c2 == '2' || c2 == '3' || c2 == '4' || c2 == '5' || c2 == '6' || c2 == '7' || c2 == '8' || c2 == '9' || (c2 == 'a' || c2 == 'A') || (c2 == 'b' || c2 == 'B') || (c2 == 'c' || c2 == 'C') || (c2 == 'd' || c2 == 'D') || (c2 == 'e' || c2 == 'E'))) {
-				return false;
-			}
-			else if ((c1 == 'g' || c1 == 'G') && (c2 == ' ' || c2 == '0' || c2 == '1' || c2 == '2' || c2 == '3' || c2 == '4' || c2 == '5' || c2 == '6' || c2 == '7' || c2 == '8' || c2 == '9' || (c2 == 'a' || c2 == 'A') || (c2 == 'b' || c2 == 'B') || (c2 == 'c' || c2 == 'C') || (c2 == 'd' || c2 == 'D') || (c2 == 'e' || c2 == 'E') || (c2 == 'f' || c2 == 'F'))) {
-				return false;
-			}
-			else if ((c1 == 'h' || c1 == 'H') && (c2 == ' ' || c2 == '0' || c2 == '1' || c2 == '2' || c2 == '3' || c2 == '4' || c2 == '5' || c2 == '6' || c2 == '7' || c2 == '8' || c2 == '9' || (c2 == 'a' || c2 == 'A') || (c2 == 'b' || c2 == 'B') || (c2 == 'c' || c2 == 'C') || (c2 == 'd' || c2 == 'D') || (c2 == 'e' || c2 == 'E') || (c2 == 'f' || c2 == 'F') || (c2 == 'g' || c2 == 'G'))) {
-				return false;
-			}
-			else {
-				return true;
-			}
-		}
-		else {
-			return false;
-		}
+		System.out.println("Student number: " + listOfStudents.get(i).getStudentNumber());
+		System.out.println("First name: \t" + listOfStudents.get(i).getFirstName());
+		System.out.println("Last name: \t" + listOfStudents.get(i).getLastName());
+		System.out.println("Birthdate: \t" + listOfStudents.get(i).getBirthDate());
+		System.out.println("City: \t\t" + listOfStudents.get(i).getCity());
+		System.out.println("Province: \t" + listOfStudents.get(i).getProvince());
+		System.out.println("Street address: " + listOfStudents.get(i).getStreetAddress());
+		System.out.println("Postal code: \t" + listOfStudents.get(i).getPostalCode());
+		System.out.println("Phone number: \t" + listOfStudents.get(i).getPhoneNumber());
 	}
 
 	/**
 	 * save listOfStudents to a .txt file
 	 */
 	public static void saveToFile() {
-		try {
-			FileOutputStream fos = new FileOutputStream(file);
-			PrintStream write = new PrintStream(fos);
+		if (listOfStudents.size() > 0) {
+			try {
+				FileOutputStream fos = new FileOutputStream(file);
+				@SuppressWarnings("resource")
+				PrintStream write = new PrintStream(fos);
 
-			if (!file.exists()) {
-				file.createNewFile();
-			}
+				if (!file.exists()) {
+					file.createNewFile();
+				}
 
-			if (listOfStudents.size() > 0) {
 				write.println(listOfStudents.size() + ", " + listOfStudents.get(listOfStudents.size() - 1).getStudentNumber());
 
 				for (int i = 0; i < listOfStudents.size(); i++) {
 					write.println(listOfStudents.get(i).toString());
 				}
+
+			} catch (IOException e) {
 			}
-			else {
-				System.out.println("You have no students to save.");
-			}
-		} catch (IOException e) {
+		}
+		else {
+			System.out.println("You have no students to save.");
 		}
 
 	}
@@ -532,8 +348,8 @@ public class SchoolSystem {
 			case "novascotia" :
 				return Province.NOVASCOTIA;
 			case "nt" :
-			case "northwest territorries" :
-			case "northwestterritorries" :
+			case "northwest territories" :
+			case "northwestterritories" :
 				return Province.NORTHWESTTERRITORIES;
 			case "nu" :
 			case "nunavut" :
@@ -569,7 +385,9 @@ public class SchoolSystem {
 	 */
 	public static void readFromFile() {
 		ArrayList<Student> tempStudentList = null;
+
 		try {
+			@SuppressWarnings({"resource"})
 			BufferedReader read = new BufferedReader(new FileReader(file));
 
 			String lineOne = read.readLine();
@@ -588,8 +406,9 @@ public class SchoolSystem {
 				tempStudentList.get(i).setStudentNumber(Long.parseLong(nextLine[2]));
 			}
 
-		} catch (IOException | InvalidInputException e) {
+		} catch (IOException | InvalidInputException | NullPointerException e) {
 		}
 		listOfStudents = tempStudentList;
+
 	}
 }

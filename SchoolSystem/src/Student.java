@@ -8,7 +8,7 @@ import java.util.regex.PatternSyntaxException;
  * @version October 26th, 2016
  */
 
-public class Student implements Comparable {
+public class Student implements Comparable<Student> {
 	public static final int thisYear = Calendar.getInstance().get(Calendar.YEAR);
 
 	public static long studentConstant = 323000000;
@@ -43,283 +43,6 @@ public class Student implements Comparable {
 		try {
 			setStreetAddress("");
 		} catch (InvalidInputException e) {
-		}
-		setStudentNumber(++studentNumber);
-	}
-
-	/**
-	 * Makes a new Student with a first name
-	 * 
-	 * @param firstName
-	 *           String - the student's first name
-	 */
-	public Student(String firstName) {
-		try {
-			setBirthDate("");
-		} catch (InvalidInputException e) {
-
-		}
-		setCity("");
-		setFirstName(firstName);
-		setLastName("");
-		try {
-			setPhoneNumber("");
-		} catch (InvalidInputException e) {
-
-		}
-		try {
-			setPostalCode("");
-		} catch (InvalidInputException e) {
-
-		}
-		try {
-			setProvince(Province.ALBERTA);
-		} catch (InvalidInputException e1) {
-
-		}
-		try {
-			setStreetAddress("");
-		} catch (InvalidInputException e) {
-
-		}
-		setStudentNumber(++studentNumber);
-	}
-
-	/**
-	 * Makes a new Student with a first name and a last name
-	 * 
-	 * @param firstName
-	 *           String - the student's first name
-	 * @param lastName
-	 *           String - the student's last name
-	 */
-	public Student(String firstName, String lastName) {
-		try {
-			setBirthDate("");
-		} catch (InvalidInputException e) {
-
-		}
-		setCity("");
-		setFirstName(firstName);
-		setLastName(lastName);
-		try {
-			setPhoneNumber("");
-		} catch (InvalidInputException e) {
-
-		}
-		try {
-			setPostalCode("");
-		} catch (InvalidInputException e) {
-
-		}
-		try {
-			setProvince(Province.ALBERTA);
-		} catch (InvalidInputException e) {
-
-		}
-		try {
-			setStreetAddress("");
-		} catch (InvalidInputException e) {
-
-		}
-		setStudentNumber(++studentNumber);
-	}
-
-	/**
-	 * Makes a new Student with a first name, a last name and a birth date
-	 * 
-	 * @param firstName
-	 *           String - the student's first name
-	 * @param lastName
-	 *           String - the student's last name
-	 * @param birth
-	 *           String - the student's birth date
-	 * @throws InvalidInputException
-	 */
-	public Student(String firstName, String lastName, String birth) throws InvalidInputException {
-		if (verifyBirthDate(birth)) {
-			setBirthDate(birth);
-		}
-		setCity("");
-		setFirstName(firstName);
-		setLastName(lastName);
-		try {
-			setPhoneNumber("");
-		} catch (InvalidInputException e) {
-
-		}
-		try {
-			setPostalCode("");
-		} catch (InvalidInputException e) {
-
-		}
-		setProvince(Province.ALBERTA);
-		try {
-			setStreetAddress("");
-		} catch (InvalidInputException e) {
-
-		}
-		setStudentNumber(++studentNumber);
-	}
-
-	/**
-	 * Makes a new Student with a first name, a last name, a birth date and a home city
-	 * 
-	 * @param firstName
-	 *           String - the student's first name
-	 * @param lastName
-	 *           String - the student's last name
-	 * @param birth
-	 *           String - the student's birth date
-	 * @param city
-	 *           String - the student's home city
-	 * @throws InvalidInputException
-	 */
-	public Student(String firstName, String lastName, String birth, String city) throws InvalidInputException {
-		if (verifyBirthDate(birth)) {
-			setBirthDate(birth);
-		}
-		setCity(city);
-		setFirstName(firstName);
-		setLastName(lastName);
-		try {
-			setPhoneNumber("");
-		} catch (InvalidInputException e) {
-
-		}
-		try {
-			setPostalCode("");
-		} catch (InvalidInputException e) {
-
-		}
-		setProvince(Province.ALBERTA);
-		try {
-			setStreetAddress("");
-		} catch (InvalidInputException e) {
-
-		}
-		setStudentNumber(++studentNumber);
-	}
-
-	/**
-	 * Makes a new Student with a first name, a last name, a birth date, a home city and a phone number
-	 * 
-	 * @param firstName
-	 *           String - the student's first name
-	 * @param lastName
-	 *           String - the student's last name
-	 * @param birth
-	 *           String - the student's birth date
-	 * @param city
-	 *           String - the student's home city
-	 * @param phoneNumber
-	 *           String - the student's phone number
-	 * @throws InvalidInputException
-	 */
-	public Student(String firstName, String lastName, String birth, String city, String phoneNumber) throws InvalidInputException {
-		if (verifyBirthDate(birth)) {
-			setBirthDate(birth);
-		}
-		setCity(city);
-		setFirstName(firstName);
-		setLastName(lastName);
-		if (verifyBirthDate(birth)) {
-			setPhoneNumber(phoneNumber);
-		}
-		try {
-			setPostalCode("");
-		} catch (InvalidInputException e) {
-
-		}
-		setProvince(Province.ALBERTA);
-		try {
-			setStreetAddress("");
-		} catch (InvalidInputException e) {
-
-		}
-		setStudentNumber(++studentNumber);
-	}
-
-	/**
-	 * Makes a new Student with a first name, a last name, a birth date, a home city, a phone number and a postal code
-	 * 
-	 * @param firstName
-	 *           String - the student's first name
-	 * @param lastName
-	 *           String - the student's last name
-	 * @param birth
-	 *           String - the student's birth date
-	 * @param city
-	 *           String - the student's home city
-	 * @param phoneNumber
-	 *           String - the student's phone number
-	 * @param postalCode
-	 *           String - the student's postal code
-	 * @throws InvalidInputException
-	 */
-	public Student(String firstName, String lastName, String birth, String city, String phoneNumber, String postalCode) throws InvalidInputException {
-		if (verifyBirthDate(birth)) {
-			setBirthDate(birth);
-		}
-		setCity(city);
-		setFirstName(firstName);
-		setLastName(lastName);
-		if (verifyBirthDate(birth)) {
-			setPhoneNumber(phoneNumber);
-		}
-		try {
-			setPostalCode(postalCode);
-		} catch (InvalidInputException e) {
-
-		}
-		setProvince(Province.ALBERTA);
-		try {
-			setStreetAddress("");
-		} catch (InvalidInputException e) {
-
-		}
-		setStudentNumber(++studentNumber);
-	}
-
-	/**
-	 * Makes a new Student with a first name, a last name, a birth date, a home city, a phone number, a postal code and a province
-	 * 
-	 * @param firstName
-	 *           String - the student's first name
-	 * @param lastName
-	 *           String - the student's last name
-	 * @param birth
-	 *           String - the student's birth date
-	 * @param city
-	 *           String - the student's home city
-	 * @param phoneNumber
-	 *           String - the student's phone number
-	 * @param postalCode
-	 *           String - the student's postal code
-	 * @param province
-	 *           String - the student's home province
-	 * @throws InvalidInputException
-	 */
-	public Student(String firstName, String lastName, String birth, String city, String phoneNumber, String postalCode, Province province) throws InvalidInputException {
-		if (verifyBirthDate(birth)) {
-			setBirthDate(birth);
-		}
-		setCity(city);
-		setFirstName(firstName);
-		setLastName(lastName);
-		if (verifyBirthDate(birth)) {
-			setPhoneNumber(phoneNumber);
-		}
-		try {
-			setPostalCode(postalCode);
-		} catch (InvalidInputException e1) {
-			e1.printStackTrace();
-		}
-		setProvince(province);
-		try {
-			setStreetAddress("");
-		} catch (InvalidInputException e) {
-
 		}
 		setStudentNumber(++studentNumber);
 	}
@@ -809,21 +532,20 @@ public class Student implements Comparable {
 	}
 
 	@Override
-	public int compareTo(Object temp) {
-		Student tempStudent = (Student) temp;
+	public int compareTo(Student student) {
 
-		if (this.getLastName().compareToIgnoreCase(tempStudent.getLastName()) == 0) {
-			if (this.getFirstName().compareToIgnoreCase(tempStudent.getFirstName()) == 0) {
+		if (this.getLastName().compareToIgnoreCase(student.getLastName()) == 0) {
+			if (this.getFirstName().compareToIgnoreCase(student.getFirstName()) == 0) {
 				return 0;
 			}
-			else if (this.getFirstName().compareToIgnoreCase(tempStudent.getFirstName()) > 0) {
+			else if (this.getFirstName().compareToIgnoreCase(student.getFirstName()) > 0) {
 				return 1;
 			}
 			else {
 				return -1;
 			}
 		}
-		else if (this.getLastName().compareToIgnoreCase(tempStudent.getLastName()) > 0) {
+		else if (this.getLastName().compareToIgnoreCase(student.getLastName()) > 0) {
 			return 1;
 		}
 		else {
