@@ -10,7 +10,7 @@ import java.util.regex.PatternSyntaxException;
  * This class is the student class, it has fields for all variables that can be entered into it
  * 
  * @author Daniel Nucci
- * @version October 26th, 2016
+ * @version October 31th, 2016
  */
 
 public class Student implements Comparable<Student> {

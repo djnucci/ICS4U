@@ -14,7 +14,7 @@ import java.util.Scanner;
  * This class is the main for the SchoolSystem Java project; this program takes information on a student and inputs it into an ArrayList
  * 
  * @author Daniel Nucci
- * @version October 26th, 2016
+ * @version October 31th, 2016
  */
 
 public class SchoolSystem {
