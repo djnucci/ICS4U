@@ -1,8 +1,13 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.regex.PatternSyntaxException;
 
 /**
- * Student.java This class is the student class, it has fields for all variables that can be entered into it
+ * Student.java
+ * 
+ * This class is the student class, it has fields for all variables that can be entered into it
  * 
  * @author Daniel Nucci
  * @version October 26th, 2016
@@ -11,7 +16,7 @@ import java.util.regex.PatternSyntaxException;
 public class Student implements Comparable<Student> {
 	public static final int thisYear = Calendar.getInstance().get(Calendar.YEAR);
 
-	public static long studentConstant = 323000000;
+	public static long studentConstant = makeStudentConstant();
 
 	private String firstName, lastName, streetAddress, city, postalCode, phoneNumber, birthDate;
 	private Province province;
@@ -44,7 +49,9 @@ public class Student implements Comparable<Student> {
 			setStreetAddress("");
 		} catch (InvalidInputException e) {
 		}
-		setStudentNumber(++studentNumber);
+		if (SchoolSystem.firstRead) {
+			setStudentNumber(++studentNumber);
+		}
 	}
 
 	/**
@@ -87,7 +94,9 @@ public class Student implements Comparable<Student> {
 			setStreetAddress(streetAddress);
 		}
 		setStreetAddress(streetAddress);
-		setStudentNumber(++studentNumber);
+		if (SchoolSystem.firstRead) {
+			setStudentNumber(++studentNumber);
+		}
 	}
 
 	/**
@@ -344,7 +353,7 @@ public class Student implements Comparable<Student> {
 			return false;
 		}
 
-		for (int i = 1; i < (sideOne.length - 1); i++) {
+		for (int i = 1; i < (sideOne.length + 1); i++) {
 			if (i % 2 == 1) {
 				if (!equalsUpperCaseLetter(sideOne[i - 1])) {
 					return false;
@@ -357,7 +366,7 @@ public class Student implements Comparable<Student> {
 			}
 		}
 
-		for (int i = 1; i < (sideTwo.length - 1); i++) {
+		for (int i = 1; i < (sideTwo.length + 1); i++) {
 			if (i % 2 == 0) {
 				if (!equalsUpperCaseLetter(sideTwo[i - 1])) {
 					return false;
@@ -553,4 +562,19 @@ public class Student implements Comparable<Student> {
 		}
 	}
 
+	public static long makeStudentConstant() {
+		try {
+			@SuppressWarnings({"resource"})
+			BufferedReader read = new BufferedReader(new FileReader(SchoolSystem.file));
+
+			String lineOne = read.readLine();
+			String[] splitFile = lineOne.split(", ");
+
+			return Long.parseLong(splitFile[1]) - 3;
+
+		} catch (IOException | NullPointerException | NumberFormatException e) {
+			return 323000000;
+		}
+
+	}
 }

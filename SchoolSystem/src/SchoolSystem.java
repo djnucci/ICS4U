@@ -9,7 +9,9 @@ import java.util.Collections;
 import java.util.Scanner;
 
 /**
- * SchoolSystem.java This class is the main for the SchoolSystem Java project; this program takes information on a student and inputs it into an ArrayList
+ * SchoolSystem.java
+ * 
+ * This class is the main for the SchoolSystem Java project; this program takes information on a student and inputs it into an ArrayList
  * 
  * @author Daniel Nucci
  * @version October 26th, 2016
@@ -20,19 +22,24 @@ public class SchoolSystem {
 	public static ArrayList<Student> listOfStudents = new ArrayList<Student>();
 
 	public static File file = new File("src/students.txt");
-
+	
+	public static boolean firstRead = false;
+	
 	public static void main(String[] args) {
 		@SuppressWarnings("resource")
 		Scanner scan = new Scanner(System.in);
 
 		int directoryIndex = 0;
 		int studentNumber = 0;
-
+		
+		readFromFile();
+		firstRead = true;
 		while (true) {
 			while (true) {
+				
 				try {
 					printIntro();
-					directoryIndex = Integer.parseInt(scan.nextLine());
+					directoryIndex = Integer.parseInt(scan.nextLine().trim());
 					break;
 				} catch (NumberFormatException ie) {
 					System.out.println("Please enter a correct value.");
@@ -117,6 +124,7 @@ public class SchoolSystem {
 			else if (directoryIndex == 10) {
 				System.out.println("Are you sure?");
 				if (scan.nextLine().equalsIgnoreCase("Yes")) {
+					saveToFile();
 					break;
 				}
 			}
@@ -294,6 +302,7 @@ public class SchoolSystem {
 		if (listOfStudents.size() > 0) {
 			try {
 				FileOutputStream fos = new FileOutputStream(file);
+				long largestStudentNumber = -1;
 				@SuppressWarnings("resource")
 				PrintStream write = new PrintStream(fos);
 
@@ -301,7 +310,13 @@ public class SchoolSystem {
 					file.createNewFile();
 				}
 
-				write.println(listOfStudents.size() + ", " + listOfStudents.get(listOfStudents.size() - 1).getStudentNumber());
+				for (int i = 0; i < listOfStudents.size(); i++){
+					if (largestStudentNumber < listOfStudents.get(i).getStudentNumber()){
+						largestStudentNumber = listOfStudents.get(i).getStudentNumber();
+					}
+				}
+				
+				write.println(listOfStudents.size() + ", " + largestStudentNumber);
 
 				for (int i = 0; i < listOfStudents.size(); i++) {
 					write.println(listOfStudents.get(i).toString());
