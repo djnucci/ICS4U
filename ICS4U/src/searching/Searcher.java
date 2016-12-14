@@ -1,8 +1,8 @@
-package sorting;
+package searching;
 
 import java.util.ArrayList;
 
-public class Sorter {
+public class Searcher {
 
 	/**
 	 * Performs a linear sort through an array of ints
