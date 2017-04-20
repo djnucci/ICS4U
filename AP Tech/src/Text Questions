@@ -1,0 +1,90 @@
+Page 6 Questions
+
+1) 	A card is an object and the deck is an array of those objects
+2) 	6 cards
+3) 	ranks = {ace, two, three, four, five, six, seven , eight, nine, ten, jack, queen, king}
+	suits = {hearts, spades, clubs, diamonds}
+	pointValues = {11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10}
+4)	Yes, the order matters
+
+Page 9 Questions
+1)	public static String flip(){
+		int num = Math.random * 3;
+		if (num == 0){
+			return "tails";
+		}
+		else{
+			return "heads";
+		}
+	}
+	
+2)	public static boolean arePermutations(int[] a1, int[] a2){
+		boolean flag = true;
+		
+		if (a1.length != a2.length){
+			return false;
+		}
+		
+		boolean[] found = new boolean[a1.length];
+		
+		for (int i = 0; i < a1.length; i++){
+			for (int j = 0; j < a1.length; j++){
+				if (found[j]){
+					continue;
+				}
+				if (a1[i] == a2[j]){
+					flag = true;
+					found[j] = true;
+					break;
+				}
+				else {
+					flag = false;
+				}
+			}
+			if (!flag){
+				return false;
+			}
+		}
+		return true;
+		
+	}
+	
+3)	0 then 1 then 1 then 1
+
+Page 20 Questions
+1)	the six and the five or the six and the other five
+2)	They must be a J, Q, K because there would be no plays after the next move of picking two cards
+3)	There is a little strategy to the game because you normally would want to take the 3 face cards rather than the eleven
+
+Page 21 Questions
+1)	I would need a place to put the cards on, a deck of cards
+2)	You would need to be able to select up to three cards and click a button to get rid of the cards. Also be able to restart the game
+3)	Yes
+4)a)	the constructor and the newGame() method
+  b)	isLegal and anotherPlayIsPossible
+  c)	
+  d)	for (int i = 0; i < board.length; i++){
+  			if(cIndexes.get(i) == i){
+  				System.out.println(board.cardAt(i));
+  			}
+  			else{
+  				System.out.println();
+  			}
+  		}
+  e)	both need to
+
+Page 27 Questions
+1)	
+2)
+3)
+
+
+
+
+
+
+
+
+
+
+
